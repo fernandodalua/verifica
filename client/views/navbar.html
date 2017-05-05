@@ -2,47 +2,49 @@
   <div class="navbar navbar-default" role="navigation">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigationbar">
-                 <span class="sr-only">Toggle navigation</span>
-                 <span class="icon-bar"></span>
-                 <span class="icon-bar"></span>
-                 <span class="icon-bar"></span>
-              </button>
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
 
-                <a class="{{ activeIfTemplateIs 'Landing' }} navbar-toggle navbar-brand" href="/Home">
-                <span class="glyphicon glyphicon-star" aria-hidden="true"></span> Home</a>
-    </div>
-
-    <div class="navbar-collapse collapse" id="navigationbar">
-        <ul class="nav navbar-nav">
-          <li class="{{ activeIfTemplateIs 'Landing' }}"><a  href="/Landing">
-            <span> <img alt="Logo" src="/logo_serendipiti_navbar.png" height="20" width="20"/></span> Serendipity</a></li>
-
-          {{#if currentUser}}
-          <li class="{{ activeIfTemplateIs 'Home' }}"><a href="/Home">
-            <span class="glyphicon glyphicon-list" aria-hidden="true"></span> Home</a></li>
-          {{/if}}
-        </ul>
-
-        <ul class="nav navbar-nav navbar-right">
-          {{> loginButtons}} <!-- here -->
-
-        </ul>
-
-        <div class="col-sm-3 col-md-3">
-
-
-
-
-
-        </div>
-
+      <a class="{{ activeIfTemplateIs 'Landing' }} navbar-toggle navbar-brand" href="/Home">
+        <span class="glyphicon glyphicon-star" aria-hidden="true"></span> Home</a>
       </div>
 
-  </div>
-</template>
+      <div class="navbar-collapse collapse" id="navigationbar">
+        <ul class="col-lg-9 nav navbar-nav">
+          <li class="{{ activeIfTemplateIs 'Landing' }}"><a  href="/">
+            <span> <img alt="Logo" src="/logo.png" height="24" width="220"/></span></a></li>
+
+            {{#if currentUser}}
+            <li class="{{ activeIfTemplateIs 'Home' }}"><a href="/Home">
+              <span class="glyphicon glyphicon-list" aria-hidden="true"></span> Home</a></li>
+              {{/if}}
+
+            </ul>
+            {{#if currentUser}}
+            <ul class="col-lg-3 nav navbar-nav navbar-right">
+              <div class="col-md-10 text-right">
+              <h4>{{this.user.profile.name}}</h4>
+              </div>
+              <div class="col-md-1">
+                <h4>{{> loginButtons}}</h4>
+              </div>
+            </ul>
+            {{else}}
 
 
-<template name="_loginButtonsAdditionalLoggedInDropdownActions">
-    <!-- <button class="btn btn-default btn-block" id="login-buttons-edit-profile">Edit Profile</button> -->
-    <button class="btn btn-default btn-block" id="login-buttons-my-startups">My Startups</button>
-</template>
+            <ul class="nav navbar-nav navbar-right">
+                {{> loginButtons}}
+            </ul>
+            {{/if}}
+          </div>
+
+        </div>
+      </template>
+
+
+      <template name="_loginButtonsAdditionalLoggedInDropdownActions">
+        <!-- <button class="btn btn-default btn-block" id="login-buttons-edit-profile">Edit Profile</button> -->
+      </template>
