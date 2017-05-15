@@ -18,23 +18,16 @@
             <span> <img alt="Logo" src="/logo.png" height="24" width="220"/></span></a></li>
 
             {{#if currentUser}}
-            <li class="{{ activeIfTemplateIs 'Home' }}"><a href="/Home">
-              <span class="glyphicon glyphicon-list" aria-hidden="true"></span> Home</a></li>
+              <li class="{{ activeIfTemplateIs 'Home' }}"><a href="/">
+              <span class="glyphicon glyphicon-fire" aria-hidden="true"></span> Home</a></li>
               {{/if}}
 
             </ul>
             {{#if currentUser}}
-            <ul class="col-lg-3 nav navbar-nav navbar-right">
-              <div class="col-md-10 text-right">
-              <h4>{{this.user.profile.name}}</h4>
-              </div>
-              <div class="col-md-1">
-                <h4>{{> loginButtons}}</h4>
-              </div>
+            <ul class="nav navbar-nav navbar-right">
+                {{> loginButtons}}
             </ul>
             {{else}}
-
-
             <ul class="nav navbar-nav navbar-right">
                 {{> loginButtons}}
             </ul>

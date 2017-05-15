@@ -1,26 +1,38 @@
-Router.map(function() {
-  this.route('home', {
-    path: '/',
-    template: 'home',
-    layoutTemplate: 'layout',
-    data: function() {
-      return {
-        posts: Post.list(Meteor.userId()),
-        user: Meteor.users.findOne({_id:Meteor.userId()})
+Router.route("/", function(){
+  var user = Meteor.users.findOne({_id:Meteor.userId()})
+  this.render("layout",{data: user})
+},
+{
+  name:"home"
+}
 
-      }
-    },
-  });
-  this.route('user', {
-    path: '/user/:_id',
-    template: 'user',
-    layoutTemplate: 'layout',
-    data: function() {
-      var _id = this.params._id;
-      return {
-        user: Meteor.users.findOne({_id: _id}),
-        posts: Post.list(_id)
-      }
-    },
-  });
+);
+
+Router.map(function() {
+
+  /*
+  this.route('home', {
+  path: '/',
+  template: 'home',
+  layoutTemplate: 'layout',
+  data: function() {
+  return {
+  posts: Post.list(Meteor.userId()),
+  user: Meteor.users.findOne({_id:Meteor.userId()})
+
+}
+},
+});*/
+this.route('user', {
+  path: '/user/:_id',
+  template: 'user',
+  layoutTemplate: 'layout',
+  data: function() {
+    var _id = this.params._id;
+    return {
+      user: Meteor.users.findOne({_id: _id}),
+      posts: Post.list(_id)
+    }
+  },
+});
 });

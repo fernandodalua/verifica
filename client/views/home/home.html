@@ -1,16 +1,10 @@
 <template name="home">
-{{#if currentUser}}
-<aside class="col-sm-3">
-{{> profile}}
-</aside>
-<section class="col-sm-9">
-{{> post}}
-{{> timeline}}
-</section>
-{{else}}
-<div class="text-center">
-<h1>Meteor Bird</h1>
-<h3>Não esta logado? Clique em "Sign In/Up".</h3>
-</div>
-{{/if}}
+  {{#if currentUser}}
+
+  {{else}}
+  <div class="text-center">
+    <h1>Meteor Bird</h1>
+    <h3>Não esta logado? Clique em "Sign In/Up".</h3>
+  </div>
+  {{/if}}
 </template>

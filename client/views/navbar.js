@@ -26,7 +26,6 @@ Template._loginButtonsLoggedInDropdown.events({
 
 
 
-
 });
 
 
