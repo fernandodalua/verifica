@@ -1,0 +1,28 @@
+<template name="ApplicationLayout">
+  <header>
+    {{> navbarHeader}}
+  </header>
+  <body>
+    <div class="col-sm-3">
+      {{#if currentUser}}
+        {{> sidebarHeader}}
+
+      {{/if}}
+    </div>
+
+
+    <div class="col-sm-9">
+      <article>
+        {{> yield}}
+      </article>
+    </div>
+
+  <nav class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container">
+      <p class="text-muted">2017 © <a href="http://www.7bi.me/">7bi</a> -
+      <a href="/About"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> Sobre</a></p>
+    </div>
+  </nav>
+</body>
+
+</template>

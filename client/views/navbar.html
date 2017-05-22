@@ -10,14 +10,15 @@
 
       <a class="{{ activeIfTemplateIs 'Landing' }} navbar-toggle navbar-brand" href="/Home">
         <span class="glyphicon glyphicon-star" aria-hidden="true"></span> Home</a>
-      </div>
+    </div>
 
-      <div class="navbar-collapse collapse" id="navigationbar">
+    <div class="navbar-collapse collapse" id="navigationbar">
         <ul class="col-lg-9 nav navbar-nav">
           <li class="{{ activeIfTemplateIs 'Landing' }}"><a  href="/">
             <span> <img alt="Logo" src="/logo.png" height="24" width="220"/></span></a></li>
 
             {{#if currentUser}}
+
               <li class="{{ activeIfTemplateIs 'Home' }}"><a href="/">
               <span class="glyphicon glyphicon-fire" aria-hidden="true"></span> Home</a></li>
               {{/if}}
@@ -32,10 +33,11 @@
                 {{> loginButtons}}
             </ul>
             {{/if}}
-          </div>
+    </div>
 
-        </div>
-      </template>
+  </div>
+
+</template>
 
 
       <template name="_loginButtonsAdditionalLoggedInDropdownActions">
