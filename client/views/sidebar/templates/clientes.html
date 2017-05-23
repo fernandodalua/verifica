@@ -91,43 +91,69 @@
 
 <template name="showClients">
 
-    {{#each getClientes}}
-    <div class="row">
+  <div class="col-lg-12" >
+    <div class="panel panel-default showClientsPanel">
+      <!-- Default panel contents -->
+      <div class="panel-heading">Clientes</div>
 
 
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          <h3 class="panel-title text-center">{{this.nome}}</h3>
+
+      <div class="panel-body">
+
+
+        <!-- Table -->
+        <table class="table" >
+          <div class="col-lg-12">
+
+          <tr>
+            <!-- <th>_id</th> -->
+            <th>Nome</th>
+            <th>CNPJ</th>
+            <th>Inscrição Estadual</th>
+            <th>Telefone</th>
+            <th>Endereço</th>
+            <th>Número</th>
+            <th>Complemento</th>
+            <th>Município</th>
+            <th>Bairro</th>
+            <th>Estado</th>
+            <th>CEP</th>
+            <th>Situção</th>
+          </tr>
+
+          {{#each getClientes}}
+
+          <tr>
+            <!-- <td>{{this._id}}</td> -->
+            <td>{{this.nome}}</td>
+            <td>{{this.cnpj}}</td>
+            <td>{{this.inscricoestadual}}</td>
+            <td>{{this.telefone}}</td>
+            <td>{{this.endereco}}</td>
+            <td>{{this.numero}}</td>
+            <td>{{this.complemento}}</td>
+            <td>{{this.municipio}}</td>
+            <td>{{this.bairro}}</td>
+            <td>{{this.uf}}</td>
+            <td>{{this.cep}}</td>
+            <td>{{this.situacao}}</td>
+          </tr>
+
+          {{/each}}
         </div>
-        <div class="panel-body">
-          <ul>
-            <li>
-              CNPJ = {{this.cnpj}}
-            </li>
-            <li>
-              Incrição Estadual = {{this.inscricoestadual}}
-            </li>
-            <li>
-              Telefone = {{this.telefone}}
-            </li>
-            <li>
-              Endereço = {{this.endereco}}
-              Município = {{this.municipio}}
-              Bairro = {{this.bairro}}
-              Estado = {{this.uf}}
-            </li>
 
-          </ul>
-
-        </div>
-        <div class="panel-footer text-center">
-          {{this._id}}
-        </div>
+        </table>
       </div>
     </div>
+  </div>
 
 
-    {{/each}}
+  <div class="panel-footer">
+    footer<br><br>
+  </div>
+
+
+
 
 
 </template>

@@ -1,0 +1,14 @@
+.showClientsPanel{
+  overflow: auto;
+}
+
+tr:hover {background-color: #f2f2f2}
+
+th {
+    background-color: #4CAF50;
+    color: white;
+}
+th, td {
+    padding: 15px;
+    text-align: left;
+}
