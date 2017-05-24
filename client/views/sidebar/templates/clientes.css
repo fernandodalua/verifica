@@ -1,14 +1,37 @@
 .showClientsPanel{
-  overflow: auto;
+  overflow-x: auto;
+  overflow-y: auto;
+  background: #ccffdd;
+  height: 300px;
+}
+
+.panel-heading, .panel-body, .panel-footer{
+  /*overflow: visible;*/
 }
 
 tr:hover {background-color: #f2f2f2}
 
+
+table {
+    table-layout:fixed;
+    overflow: auto;
+    /*border-collapse: collapse;*/
+    width: 100%;
+}
+
+th, td {
+    overflow-x: auto;
+    text-align: left;
+    padding: 8px;
+    border: 1.5px solid #00802b;
+    width: 350px;
+}
+tr{
+  width: 100%;
+}
+
+
 th {
     background-color: #4CAF50;
     color: white;
-}
-th, td {
-    padding: 15px;
-    text-align: left;
 }
