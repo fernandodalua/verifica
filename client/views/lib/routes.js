@@ -12,12 +12,27 @@ Router.map(function() {
 
     },
   });
+
+  this.route('editClient', {
+    path: '/editClient/:_clientId',
+    template: 'editClientTemplate',
+    layoutTemplate: 'ApplicationLayout',
+    data: function() {
+      var user = Meteor.users.findOne({_id: Meteor.userId()});
+      var client = Clientes.findOne({_id:this.params._clientId});
+
+      return {user,client};
+
+    }
+  });
+
   this.route('userProfile', {
     path: '/profile/:_userId',
     template: 'userProfileTemplate',
     layoutTemplate: 'ApplicationLayout',
     data: function() {
-      return Meteor.users.findOne({_id: this.params._userId});
+      var user = Meteor.users.findOne({_id: this.params._userId});
+      return {user};
 
     },
   });
@@ -51,8 +66,8 @@ Router.map(function() {
     template: 'clientsTemplate',
     layoutTemplate: 'ApplicationLayout',
     data: function() {
-      return Meteor.users.findOne({_id: Meteor.userId()});
-
+      var user = Meteor.users.findOne({_id: Meteor.userId()});
+      return user;
     },
   });
 
@@ -74,6 +89,19 @@ Router.map(function() {
       return Meteor.users.findOne({_id: Meteor.userId()});
 
     },
+  });
+
+  this.route('editProduct', {
+    path: '/editProduct/:_productId',
+    template: 'editProductTemplate',
+    layoutTemplate: 'ApplicationLayout',
+    data: function() {
+      var user = Meteor.users.findOne({_id: Meteor.userId()});
+      var product = Produtos.findOne({_id:this.params._productId});
+
+      return {user,product};
+
+    }
   });
 
   this.route('finances', {

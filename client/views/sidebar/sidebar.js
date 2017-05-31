@@ -1,3 +1,4 @@
+
 Template.sidebarHeader.helpers({
 
   getCurrentUser: function () {
@@ -11,7 +12,40 @@ Template.sidebarHeader.helpers({
 
     console.log("getUserPhoto: ",this);
 
-    return Images.findOne({_id: this.profile.photos});
+    var path = Router.current().route._path;
+    console.log("caminho ",path);
+
+    // path == "/editClient/:_clientId"
+
+
+    switch (path) {
+      case "/clients":
+      console.log("case clients: ",this);
+        return Images.findOne({_id: this.profile.photos});
+
+        break;
+
+        case "/editClient/:_clientId":
+          return Images.findOne({_id: this.user.profile.photos});
+
+          break;
+
+        case "/editProduct/:_productId":
+          return Images.findOne({_id: this.user.profile.photos});
+
+          break;
+
+
+
+
+      default:
+        return Images.findOne({_id: this.profile.photos});
+
+    }
+
+
+
+
 
   }
 
