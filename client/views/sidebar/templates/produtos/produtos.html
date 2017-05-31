@@ -8,7 +8,16 @@
 
 </template>
 
+<template name="editItem">
+  <a href='/editProduct/{{this._id}}'>
+    <i class='fa fa-pencil fa-2x' aria-hidden='true'></i>
+  </a>
 
+  <a id="removeItemBtn" type="button">
+    <i class='fa fa-times fa-2x' aria-hidden='true'></i>
+  </a>
+
+</template>
 
 <template name="addProductModal">
   <!-- {{> quickForm collection="Clientes" id="addClientForm" type="insert" omitFields="telefone" buttonContent="Save Changes" }}
@@ -25,11 +34,11 @@
   {{#autoForm id="addProductForm" resetOnSuccess=true collection="Produtos"  type="insert"}}
   <!-- Modal -->
   <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog modal-md" role="document">
+    <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+          <h4 class="modal-title" id="myModalLabel">Adicionar novo Produto</h4>
         </div>
         <div class="modal-body">
 
@@ -42,9 +51,9 @@
               {{> afQuickField id="ncm" name="ncm" label="NCM *" formgroup-class="col-lg-4"}}
               {{> afQuickField id="ean" name="ean" label="EAN *" formgroup-class="col-lg-4"}}
               {{> afQuickField id="eantributavel" name="eantributavel" label="EAN Tributável *" formgroup-class="col-lg-4"}}
-              {{> afQuickField id="unidade" name="unidade" label="Unidade *" formgroup-class="col-lg-3"}}
-              {{> afQuickField id="valor" name="valor" label="Valor *" formgroup-class="col-lg-3"}}
-              {{> afQuickField id="unidadetributavel" name="unidadetributavel" label="Unidade Tributável *" formgroup-class="col-lg-3"}}
+              {{> afQuickField id="unidade" name="unidade" label="Unidade *" options="allowed" formgroup-class="col-lg-3"}}
+              {{> afQuickField id="valor" name="valor" label="Valor *" formgroup-class="col-lg-3" step="0.01"}}
+              {{> afQuickField id="unidadetributavel" name="unidadetributavel" label="Unidade Tributável *" options="allowed" formgroup-class="col-lg-3"}}
               {{> afQuickField id="valortributavel" name="valortributavel" label="Valor Tributável*" formgroup-class="col-lg-3"}}
 
             </div>
@@ -110,9 +119,9 @@
       {{> afQuickField id="ncm" name="ncm" label="NCM *" formgroup-class="col-lg-4"}}
       {{> afQuickField id="ean" name="ean" label="EAN *" formgroup-class="col-lg-4"}}
       {{> afQuickField id="eantributavel" name="eantributavel" label="EAN Tributável *" formgroup-class="col-lg-4"}}
-      {{> afQuickField id="unidade" name="unidade" label="Unidade *" formgroup-class="col-lg-3"}}
+      {{> afQuickField id="unidade" name="unidade" label="Unidade *" options="allowed" formgroup-class="col-lg-3"}}
       {{> afQuickField id="valor" name="valor" label="Valor *" formgroup-class="col-lg-3"}}
-      {{> afQuickField id="unidadetributavel" name="unidadetributavel" label="Unidade Tributável *" formgroup-class="col-lg-3"}}
+      {{> afQuickField id="unidadetributavel" name="unidadetributavel" label="Unidade Tributável *" options="allowed" formgroup-class="col-lg-3"}}
       {{> afQuickField id="valortributavel" name="valortributavel" label="Valor Tributável*" formgroup-class="col-lg-3"}}
 
       <button type="submit" id="saveBtn" class="btn btn-primary">Save changes</button>

@@ -66,10 +66,7 @@ Template.clientTable.helpers({
         {
           key: 'edit',
           label: 'Edit',
-          fn: function (value,object,key) {
-            console.log(value,object,key);
-            return new Spacebars.SafeString("<a href='/editClient/"+object._id+"'><i class='fa fa-pencil fa-2x' aria-hidden='true'></i></a> <a href='#editClient'  data-toggle='modal'><i class='fa fa-times fa-2x' aria-hidden='true'></i></a>");
-          }
+          tmpl: Template.editItem,
 
         },
         { key: 'nome', label: 'Empresa' , cellClass: 'col-md-4'},

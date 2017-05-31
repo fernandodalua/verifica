@@ -5,11 +5,11 @@
 
   <div class="col-lg-6 form-group">
 
-    <div class="panel panel-primary">
-      <div class="panel-heading" style="font-size:30px">
+    <div class="panel panel-info">
+      <div class="panel-heading" style="font-size:20px">
 
         Cliente
-          <button type="button" class="btn btn-success btn-lg pull-right" data-toggle="modal" data-target="#findClientModal">
+          <button type="button" class="btn btn-success pull-right" data-toggle="modal" data-target="#findClientModal">
             <i class="fa fa-plus fa-1x"></i>Encontrar Cliente
           </button>
 
@@ -25,10 +25,10 @@
   <div class="col-lg-6 form-group">
 
     <div class="panel panel-success">
-      <div class="panel-heading" style="font-size:30px">
+      <div class="panel-heading" style="font-size:20px">
 
         Produtos
-      <button type="button" class="btn btn-primary btn-lg pull-right" data-toggle="modal" data-target="#findProductModal">
+      <button type="button" class="btn btn-primary pull-right" data-toggle="modal" data-target="#findProductModal">
         <i class="fa fa-plus fa-1x"></i>Encontrar Produto
       </button>
     </div>
@@ -46,8 +46,10 @@
 
       </div>
       <div class="panel-footer">
-        Total
-        <div class="pull-right">
+        <label style="font-size:20px;">
+          Total
+        </label>
+        <div class="pull-right" style="font-size:20px;">
           {{getTotal}}
         </div>
       </div>
@@ -61,7 +63,7 @@
 
   <div class="col-lg-12 text-left">
     <div class="col-lg-3">
-      <label id="clientLabel" style="font-size:30px;">{{setClientLabel}}</label>
+      <label id="clientLabel" style="font-size:20px;">{{setClientLabel}}</label>
     </div>
     <div class="col-lg-9">
 
@@ -122,7 +124,7 @@
 
   <div class="col-lg-12 text-left">
     <div class="col-lg-3">
-      <label id="productLabel" style="font-size:30px;">{{setProductLabel}}</label>
+      <label id="productLabel" style="font-size:20px;">{{setProductLabel}}</label>
     </div>
     <div class="col-lg-9">
 

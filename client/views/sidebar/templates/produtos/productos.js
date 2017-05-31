@@ -27,10 +27,11 @@ Template.productsTable.helpers({
         {
           key: 'edit',
           label: 'Edit',
-          fn: function (value,object,key) {
-            console.log(value,object,key);
-            return new Spacebars.SafeString("<a href='/editProduct/"+object._id+"'><i class='fa fa-pencil fa-2x' aria-hidden='true'></i></a> <a href='#editClient'  data-toggle='modal'><i class='fa fa-times fa-2x' aria-hidden='true'></i></a>");
-          }
+          tmpl: Template.editItem
+          // fn: function (value,object,key) {
+          //   console.log(value,object,key);
+          //   return new Spacebars.SafeString("");
+          // }
 
         },
         { key: 'codigo', label: 'Código' , cellClass: 'col-md-4'},
@@ -48,7 +49,25 @@ Template.productsTable.helpers({
 
 });
 
+Template.editItem.events({
+  "click #removeItemBtn": function(event, template){
+     console.log("\n\nRemoveItem: ",this,template);
 
+
+     switch (Router.current().route.path()) {
+       case "/products":
+       Produtos.remove({_id:this._id});
+       break;
+
+       case "/clients":
+       Clientes.remove({_id:this._id});
+       break;
+
+     }
+
+
+  }
+});
 
 Template.editProductTemplate.events({
   "click #saveBtn": function(event, template){
