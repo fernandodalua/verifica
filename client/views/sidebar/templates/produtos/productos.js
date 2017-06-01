@@ -20,6 +20,7 @@ Template.addProductModal.events({
 });
 
 
+
 Template.showProducts.helpers({
   getProducts: function(){
     console.log(Produtos.find({}).fetch());

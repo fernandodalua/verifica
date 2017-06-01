@@ -105,7 +105,7 @@ Template.findClientTable.helpers({
 
   settings: function() {
     return {
-      collection: Clientes,
+      collection: Clientes.list(),
       rowsPerPage: 10,
       showFilter: true,
       showRowCount: true,
@@ -294,7 +294,7 @@ Template.findProductTable.helpers({
 
   settingsProduct: function() {
     return {
-      collection: Produtos,
+      collection: Produtos.list(),
       rowsPerPage: 10,
       showFilter: true,
       showRowCount: true,
