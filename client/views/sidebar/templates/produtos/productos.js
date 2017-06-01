@@ -57,10 +57,38 @@ Template.editItem.events({
      switch (Router.current().route.path()) {
        case "/products":
        Produtos.remove({_id:this._id});
+
+       Meteor.users.update({_id:Meteor.userId()}, {$pull:{
+         produtos:this._id
+       }});
+
        break;
 
        case "/clients":
+       Meteor.users.update({_id:Meteor.userId()}, {$pull:{
+         clientes:this._id
+       }});
        Clientes.remove({_id:this._id});
+
+       break;
+
+     }
+
+  },
+
+  "click #editItemBtn": function(event, template){
+     console.log("\n\nRemoveItem: ",this,template);
+
+
+     switch (Router.current().route.path()) {
+       case "/products":
+        Router.go("/editProduct/"+this._id);
+
+       break;
+
+       case "/clients":
+        Router.go("/editClient/"+this._id);
+
        break;
 
      }
