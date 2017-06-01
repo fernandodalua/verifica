@@ -1,3 +1,13 @@
+Produtos.after.insert(function (userId, doc) {
+
+  // console.log(this,userId,doc);
+
+  Meteor.users.update({_id:Meteor.userId()}, {$push:{
+    produtos:this._id
+  }});
+
+});
+
 Template.addProductModal.events({
   "click #saveBtn": function(event, template){
 
@@ -10,15 +20,15 @@ Template.addProductModal.events({
 });
 
 
-Template.productsTable.helpers({
+Template.showProducts.helpers({
   getProducts: function(){
     console.log(Produtos.find({}).fetch());
-    return Produtos.list();
+    return Produtos.find({_id:{"$in": this.produtos }});
   },
 
-  settings: function () {
+  settingsProducts: function () {
     return {
-      collection: Produtos,
+      // collection: Produtos,
       rowsPerPage: 10,
       showFilter: true,
       showRowCount: true,

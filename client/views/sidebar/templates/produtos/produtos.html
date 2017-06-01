@@ -97,7 +97,12 @@
 
 <template name="showProducts">
 
-  {{> productsTable}}
+  {{> reactiveTable collection=getProducts settings=settingsProducts}}
+
+
+
+
+  <!-- {{> productsTable}} -->
 
 
 </template>
