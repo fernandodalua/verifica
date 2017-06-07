@@ -1,7 +1,7 @@
 Template.timeline.helpers({
   posts: function() {
     // console.log("aksodkoaskdksao",Post.find().fetch());
-    return Posts.find();
+    return Posts.find({},{sort:{date:-1}});
   },
 
 

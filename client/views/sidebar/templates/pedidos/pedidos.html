@@ -7,64 +7,85 @@
 
 </template>
 
-<template name="orderOpen">
+<template name="orderNavbar">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <div class="text-left form-group">
+            <button id="showAllOrdersBtn" type="button" class="btn btn-default">
+              Todos os Pedidos
+            </button>
+            <button id="showOpenOrdersBtn" type="button" class="btn btn-default">
+              Pedidos Abertos
+            </button>
+            <button id="showFinalizedBtn" type="button" class="btn btn-default">
+              Pedidos Finalizados
+            </button>
 
-<div class="row">
-  <div class="col-lg-12">
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <div class="text-left form-group">
-          <button id="showAllOrdersBtn" type="button" class="btn btn-default">
-            Todos os Pedidos
-          </button>
-          <button id="showOpenOrdersBtn" type="button" class="btn btn-default">
-            Pedidos Abertos
-          </button>
-          <button id="showFinalizedBtn" type="button" class="btn btn-default">
-            Pedidos Finalizados
-          </button>
 
+          <!-- {{> addTipModal}} -->
+        </div>
 
-        <!-- {{> addTipModal}} -->
       </div>
 
+      <div class="panel-body">
+
+        {{> Template.dynamic template=tab data=tabData}}
+
+
+        <!-- {{> googleLikeHelp}} -->
+      </div>
     </div>
 
-    <div class="panel-body">
-
-      {{> Template.dynamic template=tab data=tabData}}
-
-
-      <!-- {{> googleLikeHelp}} -->
     </div>
   </div>
+</template>
 
-  </div>
-</div>
+
+
+
+<template name="userPosts">
+  <h2>Post Lists</h2>
+  <select>
+    {{#each postLists}}
+      <option value="{{_id}}">{{name}}</option>
+    {{/each}}
+  </select>
+
+  <h2>Filtered Posts</h2>
+  <ul>
+  {{#each filteredPosts}}
+    <li>{{name}}</li>
+  {{/each}}
+  </ul>
+</template>
+
+
+
+<template name="orderOpen">
+
+<!-- {{> userPosts}} -->
 
 
   <div class="row">
-    <div class="col-lg-12">
 
-      <div class="col-lg-1 text-center">
-        <button type="button" id="checkOrder" style="float:center;" class="btn btn-success">
-          <span class="fa fa-check fa-2x"> </span>
 
-        </button>
-      </div>
-
-      <div class="col-lg-11">
+      <div class="col-lg-12">
         <div class="panel panel-primary">
 
           <div class="panel-heading">
-            <h4 class="panel-title">
-
-              {{getClient.nome}}
-              <button type="button" id="removeOrder" style="float:right;background:transparent;" class="btn">
-                <span class="fa fa-times fa-2x"> {{this.nome}}</span>
+            <h2 class="panel-title text-center">
+              <button type="button" id="checkOrder" style="float:left;" class="btn btn-success">
+                <span class="fa fa-check fa-2x"> </span>
 
               </button>
-            </h4>
+                {{getClient.nome}}
+              <button type="button" id="removeOrder" style="float:right;background:transparent;" class="btn">
+                <span class="fa fa-times fa-2x"></span>
+
+              </button>
+            </h2>
 
           </div>
 
@@ -82,7 +103,6 @@
 
       </div>
 
-    </div>
   </div>
 
 </template>
@@ -116,6 +136,21 @@
 </template>
 
 
+<template name="showOpenOrders">
+
+  {{#each getOrders}}
+
+  {{#if this.status}}
+    {{> orderOpen}}
+
+  {{else}}
+    {{> orderFinalized}}
+  {{/if}}
+
+
+  {{/each}}
+
+</template>
 
 <template name="showOrders">
 

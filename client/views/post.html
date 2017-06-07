@@ -1,0 +1,52 @@
+<template name="post">
+  <div class="row">
+    <div class="col-lg-12">
+      <form class="form-horizontal">
+        <fieldset>
+          <legend>Nova Mensagem</legend>
+          <div class="row">
+            <div class="col-lg-11">
+              {{> editable}}
+
+            </div>
+
+            <div class="col-lg-1">
+              <button type="button" class="btn btn-warning">
+                Publicar
+              </button>
+            </div>
+          </div>
+        </fieldset>
+      </form>
+    </div>
+  </div>
+</template>
+
+
+<template name="newPost">
+  <div class="row">
+    <div class="col-lg-12">
+            <div class="col-lg-11">
+              {{> editable}}
+
+            </div>
+
+            <div class="col-lg-1">
+              <button type="button" class="btn btn-warning">
+                Publicar
+              </button>
+            </div>
+        </div>
+    </div>
+</template>
+
+<template name="postTemplate">
+  {{> newPost}}
+
+</template>
+
+
+<template name="editable">
+  <textarea id="content" rows="10" style="width:100%;" placeholder="Enter text ..." value={{this.content}}></textarea>
+
+</template>
