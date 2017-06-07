@@ -61,6 +61,17 @@ Router.map(function() {
     },
   });
 
+  //Pedidos
+  this.route('orders', {
+    path: '/orders',
+    template: 'orderTemplate',
+    layoutTemplate: 'ApplicationLayout',
+    data: function() {
+      return Meteor.users.findOne({_id: Meteor.userId()});
+
+    },
+  });
+
   this.route('clients', {
     path: '/clients',
     template: 'clientsTemplate',

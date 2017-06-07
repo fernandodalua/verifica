@@ -1,6 +1,7 @@
 Template.timeline.helpers({
   posts: function() {
-    return Post.list(Meteor.userId());
+    // console.log("aksodkoaskdksao",Post.find().fetch());
+    return Posts.find();
   },
 
 

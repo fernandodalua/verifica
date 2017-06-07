@@ -9,30 +9,82 @@
 
 <template name="orderOpen">
 
-    <div class="panel panel-primary">
-
-    <div class="panel-heading">
-      <h4 class="panel-title">
-
-          {{getClient.nome}}
-          <button type="button" id="removeOrder" style="float:right;background:transparent;" class="btn">
-            <span class="fa fa-times fa-2x"> {{this.nome}}</span>
-
+<div class="row">
+  <div class="col-lg-12">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <div class="text-left form-group">
+          <button id="showAllOrdersBtn" type="button" class="btn btn-default">
+            Todos os Pedidos
           </button>
-      </h4>
+          <button id="showOpenOrdersBtn" type="button" class="btn btn-default">
+            Pedidos Abertos
+          </button>
+          <button id="showFinalizedBtn" type="button" class="btn btn-default">
+            Pedidos Finalizados
+          </button>
+
+
+        <!-- {{> addTipModal}} -->
+      </div>
 
     </div>
 
     <div class="panel-body">
-      {{#each getProducts}}
-      <p>{{this.nome}}  x{{this.quantidade}} = {{this.subtotal}}</p>
-      {{/each}}
+
+      {{> Template.dynamic template=tab data=tabData}}
+
+
+      <!-- {{> googleLikeHelp}} -->
+    </div>
+  </div>
+
+  </div>
+</div>
+
+
+  <div class="row">
+    <div class="col-lg-12">
+
+      <div class="col-lg-1 text-center">
+        <button type="button" id="checkOrder" style="float:center;" class="btn btn-success">
+          <span class="fa fa-check fa-2x"> </span>
+
+        </button>
+      </div>
+
+      <div class="col-lg-11">
+        <div class="panel panel-primary">
+
+          <div class="panel-heading">
+            <h4 class="panel-title">
+
+              {{getClient.nome}}
+              <button type="button" id="removeOrder" style="float:right;background:transparent;" class="btn">
+                <span class="fa fa-times fa-2x"> {{this.nome}}</span>
+
+              </button>
+            </h4>
+
+          </div>
+
+          <div class="panel-body">
+            {{#each getProducts}}
+            <p>{{this.nome}}  x{{this.quantidade}} = {{this.subtotal}}</p>
+            {{/each}}
+
+          </div>
+          <div class="panel-footer">
+            {{this.createdAt}}
+          </div>
+
+        </div>
+
+      </div>
 
     </div>
-    <div class="panel-footer">
-      {{this.createdAt}}
-    </div>
-</div>
+  </div>
+
 </template>
 
 <template name="orderFinalized">

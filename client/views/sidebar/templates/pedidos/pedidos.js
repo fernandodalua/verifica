@@ -26,6 +26,30 @@ Template.showOrders.helpers({
 
 
 Template.orderOpen.helpers({
+  tab: function() {
+    return "allOrders";
+  },
+  tabData: function() {
+    var tab = Template.instance().currentTab.get();
+
+    var data = {
+      "allOrders": [
+        { user: Meteor.users.find({_id:Meteor.userId()}) }
+      ],
+      "openOrders": [
+        { user: Meteor.users.find({_id:Meteor.userId()}) }
+      ],
+      "finalizedOrders": [
+        { user: Meteor.users.find({_id:Meteor.userId()}) }
+      ]
+    };
+
+    return data[ tab ];
+  }
+});
+
+
+Template.orderOpen.helpers({
 
 
   getProducts: function(){
@@ -49,7 +73,13 @@ Template.orderOpen.events({
   "click #removeOrder": function(event, template){
      Pedidos.remove({_id:this._id});
     console.log("\n\n--remove--\n",this._id);
-  }
+  },
+  "click #checkOrder": function(event, template){
+    Pedidos.update({_id:this._id}, {$set:{
+      status:false
+    }});
+
+  },
 });
 
 Template.orderFinalized.helpers({

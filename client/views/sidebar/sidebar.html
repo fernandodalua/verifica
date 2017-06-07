@@ -14,7 +14,7 @@
             {{#with getCurrentUser}}
 
             <a href="/profile/{{this._id}}">
-                {{this.profile.name}}
+              {{this.profile.name}}
             </a>
 
             {{/with}}
@@ -35,39 +35,59 @@
         <div class="profile-usermenu">
           <ul class="nav">
             <li>
-              <a href="/userConfig">
-                <i class="fa fa-cog"></i>
-                Configurações de Usuário</a>
-              </li>
+              <a href="/">
+                <i class="fa fa-home"></i>
+                Pagina inicial
+              </a>
+            </li>
+
+            <li>
+              <a href="/orders">
+                <i class="fa fa-list-ol"></i>
+                Pedidos
+              </a>
+            </li>
+
             <li>
               <a href="/issue">
                 <i class="fa fa-file-text-o"></i>
-                Emitir Nota</a>
-              </li>
-              <li>
-                <a href="/clients">
-                  <i class="fa fa-users" aria-hidden="true"></i>
-                  Clientes</a>
-                </li>
-                <li>
-                  <a href="/products">
-                    <i class="fa fa-th-list"></i>
-                    Produtos </a>
-                  </li>
-                  <li>
-                    <a href="/finances">
-                      <i class="glyphicon glyphicon-piggy-bank"></i>
-                      Financeiro </a>
-                    </li>
-                    <li>
-                      <a href="/repp">
-                        <i class="glyphicon glyphicon-star"></i>
-                        Repp </a>
-                      </li>
-                  </ul>
-                </div>
-                <!-- END MENU -->
-              </div>
-            </div>
-            </nav>
-            </template>
+                Emitir Nota
+              </a>
+            </li>
+            <li>
+              <a href="/clients">
+                <i class="fa fa-users" aria-hidden="true"></i>
+                Clientes
+              </a>
+            </li>
+            <li>
+              <a href="/products">
+                <i class="fa fa-th-list"></i>
+                Produtos
+              </a>
+            </li>
+            <li>
+              <a href="/finances">
+                <i class="glyphicon glyphicon-piggy-bank"></i>
+                Financeiro
+              </a>
+            </li>
+            <li>
+              <a href="/repp">
+                <i class="glyphicon glyphicon-star"></i>
+                Repp
+              </a>
+            </li>
+            <li>
+              <a href="/userConfig">
+                <i class="fa fa-cog"></i>
+                Configurações de Usuário
+              </a>
+            </li>
+          </ul>
+        </div>
+        <!-- END MENU -->
+      </div>
+    </div>
+  </nav>
+</template>

@@ -1,0 +1,10 @@
+
+.buttonCenter{
+  background: black;
+
+  height:100%;
+  /*vertical-align:middle;*/
+
+  /*float:right;*/
+  display:table;
+}
