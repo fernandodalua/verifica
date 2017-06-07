@@ -56,3 +56,20 @@ Images.allow({
   },
 
 });
+
+Meteor.publish('orders', function(){
+  return Pedidos.find();
+});
+
+
+Pedidos.allow({
+  insert: function(){
+    return true;
+  },
+  update: function(){
+    return true;
+  },
+  remove: function(){
+    return true;
+  }
+});

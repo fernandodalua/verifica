@@ -1,17 +1,30 @@
 <template name="issueTemplate">
   <h2>Emitir</h2>
 
-  {{> search}}
+  <!-- {{> search}} -->
+  <div class="row">
+    <div class="col-lg-12 form-group">
+      <button type="button" style="float:right;" id="saveOrder" class="btn btn-warning">
+        Salvar pedido
+      </button>
+    </div>
 
-  <div class="col-lg-6 form-group">
+  </div>
+
+<div class="col-lg-3">
+  {{> showOrders}}
+
+</div>
+<div class="col-lg-9">
+  <div class="col-lg-12 form-group">
 
     <div class="panel panel-info">
       <div class="panel-heading" style="font-size:20px">
 
         Cliente
-          <button type="button" class="btn btn-success pull-right" data-toggle="modal" data-target="#findClientModal">
-            <i class="fa fa-plus fa-1x"></i>Encontrar Cliente
-          </button>
+        <button type="button" class="btn btn-success pull-right" data-toggle="modal" data-target="#findClientModal">
+          <i class="fa fa-plus fa-1x"></i>Encontrar Cliente
+        </button>
 
       </div>
       <div class="panel-body">
@@ -22,26 +35,26 @@
     </div>
   </div>
 
-  <div class="col-lg-6 form-group">
+  <div class="col-lg-12 form-group">
 
     <div class="panel panel-success">
       <div class="panel-heading" style="font-size:20px">
 
         Produtos
-      <button type="button" class="btn btn-primary pull-right" data-toggle="modal" data-target="#findProductModal">
-        <i class="fa fa-plus fa-1x"></i>Encontrar Produto
-      </button>
-    </div>
+        <button type="button" class="btn btn-primary pull-right" data-toggle="modal" data-target="#findProductModal">
+          <i class="fa fa-plus fa-1x"></i>Encontrar Produto
+        </button>
+      </div>
       <div class="panel-body">
 
         <div class="col-lg-12">
 
-        {{> findProduct}}
-      </div>
+          {{> findProduct}}
+        </div>
 
-      <div class="col-lg-12">
-        {{> showSelectecProducts}}
-      </div>
+        <div class="col-lg-12">
+          {{> showSelectecProducts}}
+        </div>
 
 
       </div>
@@ -57,18 +70,18 @@
     </div>
   </div>
 
+</div>
+
+
 </template>
 
 <template name="findClient">
 
   <div class="col-lg-12 text-left">
-    <div class="col-lg-3">
+    <div class="col-lg-12">
       <label id="clientLabel" style="font-size:20px;">{{setClientLabel}}</label>
     </div>
-    <div class="col-lg-9">
 
-
-    </div>
 
   </div>
 
@@ -192,25 +205,25 @@
 
 <template name="addProd">
 
-<div class="modal fade" id="qtdProdModal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title" id="">Quantidade</h4>
-      </div>
-      <div class="modal-body">
+  <div class="modal fade" id="qtdProdModal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title" id="">Quantidade</h4>
+        </div>
+        <div class="modal-body">
 
-        <input id='qntProdInput' type='Number' name='qnt' value='1'>
+          <input id='qntProdInput' type='Number' name='qnt' value='1'>
 
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button id="saveQnt" type="button" class="btn btn-primary">Adicionar</button>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button id="saveQnt" type="button" class="btn btn-primary">Adicionar</button>
+        </div>
       </div>
     </div>
   </div>
-</div>
 
 
 
@@ -281,3 +294,10 @@
   </div>
 
 </template>
+
+
+<!-- <template name="showOrders">
+
+  {{#each getOrder}}
+
+</template> -->

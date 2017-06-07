@@ -9,6 +9,43 @@ Template.issueTemplate.helpers({
 
 });
 
+Template.issueTemplate.events({
+  "click #saveOrder": function(event, template){
+    // produto = [ID, valor, quantidade]
+
+    var products = selectedProducts.find({});
+    var client = Session.get("clientNota");
+    // console.log("\n\n\n\n",client);
+    // // var oClient = {
+    // //   nome: client.nome,
+    // //   cpf: client.cpf
+    // // };
+    //
+    console.log("\n\nclient.nome:\n",client.nome);
+
+
+    var order = new Object({
+      client: client._id,
+      products: products.fetch(),
+      status: true
+    });
+    console.log("\n\n-- -- -- -- -- -- -- -- -- -- -- -- ");
+
+    console.log("\nproducts:\n",client._id);
+    console.log("\nproducts:\n",products.fetch());
+    console.log("\norderClient:\n",order);
+
+     Pedidos.insert({
+       client: order.client,
+       products: order.products,
+       status: order.status
+     });
+
+
+
+  }
+});
+
 
 Template.findClient.helpers({
   getProducts: function() {

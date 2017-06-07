@@ -1,0 +1,82 @@
+<template name="orderTemplate">
+
+  <h2>Meus pedidos</h2>
+
+  {{> showOrders}}
+
+
+</template>
+
+<template name="orderOpen">
+
+    <div class="panel panel-primary">
+
+    <div class="panel-heading">
+      <h4 class="panel-title">
+
+          {{getClient.nome}}
+          <button type="button" id="removeOrder" style="float:right;background:transparent;" class="btn">
+            <span class="fa fa-times fa-2x"> {{this.nome}}</span>
+
+          </button>
+      </h4>
+
+    </div>
+
+    <div class="panel-body">
+      {{#each getProducts}}
+      <p>{{this.nome}}  x{{this.quantidade}} = {{this.subtotal}}</p>
+      {{/each}}
+
+    </div>
+    <div class="panel-footer">
+      {{this.createdAt}}
+    </div>
+</div>
+</template>
+
+<template name="orderFinalized">
+
+  <div class="panel panel-success">
+
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-target="#collapseOne" href="#collapseOne">
+          {{getClient.nome}}
+        </a>
+      </h4>
+
+    </div>
+
+    <div id="collapseOne" class="panel-collapse collapse in">
+      <div class="panel-body">
+        {{#each getProducts}}
+        <p>{{this.nome}}  x{{this.quantidade}} = {{this.subtotal}}</p>
+        {{/each}}
+
+      </div>
+      <div class="panel-footer">
+        {{this.createdAt}}
+      </div>
+    </div>
+  </div>
+
+</template>
+
+
+
+<template name="showOrders">
+
+  {{#each getOrders}}
+
+  {{#if this.status}}
+    {{> orderOpen}}
+
+  {{else}}
+    {{> orderFinalized}}
+  {{/if}}
+
+
+  {{/each}}
+
+</template>
