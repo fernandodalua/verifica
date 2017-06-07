@@ -156,14 +156,18 @@
 
   {{#each getOrders}}
 
-  {{#if this.status}}
-    {{> orderOpen}}
+    {{#if this.status}}
+      {{> orderOpen}}
+
+    {{else}}
+      {{> orderFinalized}}
+    {{/if}}
 
   {{else}}
-    {{> orderFinalized}}
-  {{/if}}
 
+    Nenhum pedido registrado
 
   {{/each}}
+
 
 </template>

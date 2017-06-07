@@ -1,4 +1,16 @@
+
 const selectedProducts = new Mongo.Collection(null);
+
+Template.issueTemplate.onCreated(function () {
+  Session.set("clientNota", null);
+  selectedProducts.remove({});
+
+
+
+
+});
+
+
 
 Template.issueTemplate.helpers({
   getTotal: function() {
@@ -35,12 +47,15 @@ Template.issueTemplate.events({
     console.log("\nproducts:\n",products.fetch());
     console.log("\norderClient:\n",order);
 
-     Pedidos.insert({
+     var myOrderId = Pedidos.insert({
        client: order.client,
        products: order.products,
        status: order.status
      });
 
+     Meteor.users.update({_id:Meteor.userId()}, {$push:{
+       pedidos:myOrderId
+     }});
 
 
   }

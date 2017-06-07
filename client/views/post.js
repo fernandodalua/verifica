@@ -1,9 +1,12 @@
-Template.post.events({
-  "submit form": function(e, template) {
+Template.newPost.events({
+  "click #newPostBtn": function(e, template) {
     e.preventDefault();
     var textarea = $("#content").val();
-    Posts.publish(textarea);
+    var pid = Posts.publish(textarea);
     textarea = "";
+
+    console.log("\n\n\n\npiddpidpidpidip",pid);
+
     return false;
   }
 });
