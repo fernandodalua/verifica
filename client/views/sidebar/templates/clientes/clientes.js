@@ -27,7 +27,10 @@ Template.addClientModal.events({
   "click #saveBtn": function(event, template){
 
     $("#addClientForm").submit();
-    $("#myModal").modal("hide");
+
+
+// console.log("sub",sub);
+    // $("#myModal").modal("hide");
   },
   // "click #addClientBtn": function(event, template){
   //   $("#addClientModal").modal('show');

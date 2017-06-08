@@ -110,6 +110,7 @@ peerlibrary:blaze-components@0.16.2
 peerlibrary:computed-field@0.3.1
 peerlibrary:data-lookup@0.1.0
 peerlibrary:reactive-field@0.1.0
+peppelg:bootstrap-3-modal@1.0.4
 peppelg:mongo-sum@2.0.0
 promise@0.8.8
 raix:eventemitter@0.1.3
