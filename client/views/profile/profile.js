@@ -118,8 +118,7 @@ Template.editProfileTemplate.events({
   },
 
   "click #getBtn"(){
-    var num1 = $("#n1").val();
-    var num2 = $("#n2").val();
+
     var query = "?n1="+num1+"&n2="+num2;
     console.log("\n\nquery: ",query);
     //var response = Meteor.call('getPost',query);
@@ -194,7 +193,41 @@ Template.editProfileTemplate.helpers({
 
 Template.footerOptions.events({
   "click #save": function(event, template){
-    $("#UserProfileEdit").submit();
+    var cert = Session.get("certificado");
+    // console.log(cert);
+
+    if(cert){
+
+      Meteor.users.update({_id:Meteor.userId()}, {$set:{
+        "profile.certificado": cert
+      }});
+      $("#UserProfileEdit").submit();
+
+      Session.set("certificado", null);
+
+        console.log(Images.findOne({_id:cert}).url());
+        // log()
+
+      var certId = this.profile.certificado;
+      var certPass = this.profile.senhacertificado;
+      var query = "?"+certId+"&"+certPass;
+      console.log("\n\nquery: ",query);
+      //var response = Meteor.call('getPost',query);
+
+      // set Session variable in method callback
+      Meteor.call('getPost', query, function(error, result){
+        Session.set('responsePost', result);
+        // console.log("Result",result);
+
+      });
+      console.log("\nresponse: ",Session.get('responsePost'));
+
+
+
+
+  }
+
+
   },
   "click #check": function(event, template){
     var cnpj = $("#cnpj").val();
