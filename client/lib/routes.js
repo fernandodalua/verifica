@@ -67,6 +67,8 @@ Router.map(function() {
     template: 'orderTemplate',
     layoutTemplate: 'ApplicationLayout',
     data: function() {
+      Session.set('showOpenFilter', true);
+      Session.set('showFinalizedFilter', false);
       return Meteor.users.findOne({_id: Meteor.userId()});
 
     },

@@ -14,7 +14,8 @@ Template.issueTemplate.onCreated(function () {
 
 Template.issueTemplate.helpers({
   getTotal: function() {
-    return selectedProducts.find({}).sum('subtotal');
+    var total = selectedProducts.find({}).sum('subtotal');
+    return "R$"+String(total.toFixed(2));
 
   },
 
@@ -240,10 +241,19 @@ Template.showSelectecProducts.helpers({
     // return products;
   },
 
+  getValor: function(){
+    console.log("\n\n\n\nvalor",this);
+    var val = this.valor;
+
+    return "R$"+String(val.toFixed(2));
+    // let sutotal =  elem.valor*elem.quantidade;
+    // return subtotal;
+  },
   getSubtotal: function(){
     console.log("\n\n\n\nsubtotal",this);
     var stotal = this.quantidade*this.valor
 
+    return "R$"+String(stotal.toFixed(2));
     // let sutotal =  elem.valor*elem.quantidade;
     // return subtotal;
   }
@@ -294,7 +304,7 @@ Template.qntProduto.events({
   "click #saveQnt": function(event, template){
     var prod = Session.get("addingProd");
     var qntProd = $("#qntProdInput").val();
-    var stotal = prod.valor*qntProd;
+    var stotal = parseFloat((prod.valor*qntProd).toPrecision(3));
 
     Session.set("addingProd",null);
      console.log(prod);
