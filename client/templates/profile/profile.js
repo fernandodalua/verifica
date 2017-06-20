@@ -194,7 +194,13 @@ Template.editProfileTemplate.helpers({
 Template.footerOptions.events({
   "click #save": function(event, template){
     var cert = Session.get("certificado");
-    // console.log(cert);
+    console.log(cert);
+
+    if(cert == null){
+      cert = Meteor.user().profile.certificado;
+
+    }
+    console.log(cert);
 
     if(cert){
 
@@ -230,12 +236,20 @@ Template.footerOptions.events({
 
   },
   "click #check": function(event, template){
-    var cnpj = $("#cnpj").val();
 
-    var num2 = $("#n2").val();
+    var user = Meteor.user();
+    var cnpj = $("#cnpj").val();
+    var cert = Session.get("certificado");
+    
+    if(cert == null){
+      cert = Meteor.user().profile.certificado;
+
+    }
+
+    // var num2 = $("#n2").val();
 
     //?nome=&cnpj=19546609000199&arquivo=&senha=
-    var query = "?nome=&cnpj="+cnpj+"&arquivo=&senha=";
+    var query = "?nome=&cnpj="+cnpj+"&arquivo="+cert+"&senha="+user.profile.senhacertificado;
     console.log("\n\nquery: ",query);
     //var response = Meteor.call('getPost',query);
 
@@ -243,33 +257,10 @@ Template.footerOptions.events({
     // set Session variable in method callback
       // console.log("Result",result);
 
-      swal({
-        title: "Oops!",
-        text: "Antes de continuar, digite a senha do seu certificado:",
-        type: "input",
-        showCancelButton: true,
-        closeOnConfirm: false,
-        animation: "slide-from-top",
-        inputPlaceholder: "Write something"
-      },
-      function(inputValue){
-        if (inputValue === false) return false;
-
-        if (inputValue === "") {
-          swal.showInputError("You need to write something!");
-          return false
-        }
-
-
-        Meteor.call('getPost', query, function(error, result){
-          Session.set('responsePost', result);
-          swal("Resposta",result,"success");
-        });
-
+      Meteor.call('getPost', query, function(error, result){
+        Session.set('responsePost', result);
+        swal("Resposta",result,"success");
       });
-
-
-
 
 
     console.log("\nresponse: ",Session.get('responsePost'));

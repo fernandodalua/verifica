@@ -89,7 +89,13 @@ Router.map(function() {
     template: 'userConfigTemplate',
     layoutTemplate: 'ApplicationLayout',
     data: function() {
-      return Meteor.users.findOne({_id: Meteor.userId()});
+      var user = Meteor.user();
+      // var user = Meteor.users.findOne({_id: Meteor.userId()});
+      console.log(user);
+      // console.log(user.profile.certificado);
+      // Session.set("certificado", user.profile.certificado);
+
+      return user;
 
     },
   });
