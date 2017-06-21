@@ -210,8 +210,8 @@ Template.footerOptions.events({
       $("#UserProfileEdit").submit();
 
       Session.set("certificado", null);
-
-        console.log(Images.findOne({_id:cert}).url());
+      var url = Images.findOne({_id:cert}).url();
+        console.log(url);
         // log()
 
       var certId = this.profile.certificado;
@@ -240,7 +240,7 @@ Template.footerOptions.events({
     var user = Meteor.user();
     var cnpj = $("#cnpj").val();
     var cert = Session.get("certificado");
-    
+
     if(cert == null){
       cert = Meteor.user().profile.certificado;
 

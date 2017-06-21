@@ -98,7 +98,7 @@ Meteor.methods({
 
     //    console.log(postQuery);
 
-    var resposta = HTTP.get( 'http://verificasefaz.com.br/webservices/insertClient.php'+postQuery, {} );
+    var resposta = HTTP.get( 'http://localhost/teste/index.php'+postQuery, {} );
 
      console.log(resposta);
 

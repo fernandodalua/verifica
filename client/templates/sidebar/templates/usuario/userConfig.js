@@ -25,8 +25,8 @@ Template.userConfigTemplate.events({
             // Meteor.users.update({_id:Meteor.userId()}, {$set:{
             //   certificado: fileObj._id
             // }});
-            console.log(fileObj._id);
-            Session.set("certificado", fileObj._id);
+
+            Session.set("certificado", fileObj._id());
             // console.log(Session.get("certificado"));
           // // handle success depending what you need to do
           // var userId = Meteor.userId();
