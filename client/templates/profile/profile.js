@@ -142,12 +142,12 @@ Template.editProfileTemplate.events({
           // handle success depending what you need to do
           var userId = Meteor.userId();
           var imagesURL = {
-            "profile.image": "/cfs/files/images/" + fileObj._id
+            "profile.image": Meteor.absolutePath + '/public/uploads' + fileObj._id
           };
           Meteor.users.update(userId, {$set: imagesURL});
 
 
-          console.log("/cfs/files/images/"+fileObj._id);
+          // console.log("/cfs/files/images/"+fileObj._id);
 
           Meteor.users.update({_id:Meteor.userId()}, {$set:{
             "profile.photos":fileObj._id

@@ -11,9 +11,6 @@ Meteor.publish("posts", function () {
 });
 
 
-Meteor.publish('images', function(){
-  return Images.find();
-});
 
 Meteor.publish('clients', function(){
   return Clientes.find();
@@ -49,6 +46,10 @@ Produtos.allow({
   }
 });
 
+Meteor.publish('images', function(){
+  return Images.find();
+});
+
 Images.allow({
   'insert': function () {
     // add custom authentication code here
@@ -56,6 +57,23 @@ Images.allow({
   },
 
 });
+
+Meteor.publish('certificados', function(){
+  return Certificados.find();
+});
+
+Certificados.allow({
+  insert: function(){
+    return true;
+  },
+  update: function(){
+    return true;
+  },
+  remove: function(){
+    return true;
+  }
+});
+
 
 Meteor.publish('orders', function(){
   return Pedidos.find();

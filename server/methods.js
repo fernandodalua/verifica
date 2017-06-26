@@ -103,6 +103,7 @@ Meteor.methods({
      console.log(resposta);
 
       return resposta.data;
+
 },
 
 
