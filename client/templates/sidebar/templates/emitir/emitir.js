@@ -54,6 +54,55 @@ Template.issueTemplate.events({
        status: order.status
      });
 
+     var nota = Pedidos.find({_id:myOrderId}).fetch();
+
+    //  Session.set("notaID",nota);
+
+     console.log(nota);
+
+
+
+     var user = Meteor.user();
+     var cnpj = user.profile.cnpj;
+     var cert = "a";
+     //
+    //  if(cert == null){
+    //    cert = Meteor.user().profile.certificado;
+     //
+    //  }
+
+     // var num2 = $("#n2").val();
+
+     //?nome=&cnpj=19546609000199&arquivo=&senha=
+      // var query = "?nome=&cnpj="+cnpj+"&arquivo="+cert+"&senha="+user.profile.senhacertificado;
+       var query = "?a=gay";
+
+
+
+
+    //  console.log("\n\n -- -- resposta -- --\n"+resposta);
+
+    // var response = Meteor.call('getPost',query);
+    Meteor.call('getPost',query,function(error, result){
+      // var response = Session.get("httpResponse");
+      // swal("confirm","resposta:",result.data);
+      console.log("call result - ",result);
+      // console.log("call response - ",response);
+    });
+
+// console.log("-- response:\n",response);
+    //  Meteor.call('getPost', function(error, result){
+    //   //  Session.set('responsePost', result);
+    //    console.log("Result",result);
+     //
+    //  });
+
+    // Meteor.call('getPost',nota, function(error, result){
+    //   // swal("confirm","result",result);
+    //   // console.log(result);
+    //
+    // });
+
      Meteor.users.update({_id:Meteor.userId()}, {$push:{
        pedidos:myOrderId
      }});
@@ -70,9 +119,17 @@ Template.findClient.helpers({
   },
 
   setClientLabel: function() {
+
     var client = Session.get("clientNota");
-    console.log(client);
-    return client.nome;
+    if (client) {
+      console.log(client);
+      return client.nome;
+
+    }
+    else {
+      return null;
+    }
+
   },
 
 
@@ -226,8 +283,15 @@ Template.findClientTable.helpers({
 Template.findProduct.helpers({
   setProductLabel: function() {
     var client = Session.get("productsNota");
-    console.log("\n\n\n\nlabel", client);
-    return client.nome;
+
+    if (client) {
+      console.log("\n\n\n\nlabel", client);
+      return client.nome;
+    }
+    else{
+      return null;
+    }
+
   },
 });
 

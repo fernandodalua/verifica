@@ -46,6 +46,4 @@ matb33:collection-hooks
 
 jimmiebtlr:bootstrap-wysihtml5
 peppelg:bootstrap-3-modal
-ostrio:files
-dynamic-import
 ostrio:meteor-root

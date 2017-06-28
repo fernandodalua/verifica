@@ -45,7 +45,7 @@ Template.showOrders.helpers({
     var user = Meteor.users.findOne({_id:Meteor.userId()});
 
 
-    console.log("\n\n\n-- -- --\ngetOrders:\n",Pedidos.find().fetch());
+    // console.log("\n\n\n-- -- --\ngetOrders:\n",Pedidos.find().fetch());
     return Pedidos.find({_id:{"$in":user.pedidos}}, {sort:{createdAt:-1}});
     // return Pedidos.find({_id:{"$in": user.orders }})
 
@@ -56,7 +56,7 @@ Template.showOrders.helpers({
     var user = Meteor.users.findOne({_id:Meteor.userId()});
 
 
-    console.log("\n\n\n-- -- --\ngetOrders:\n",Pedidos.find().fetch());
+    // console.log("\n\n\n-- -- --\ngetOrders:\n",Pedidos.find().fetch());
     return Pedidos.find({status:false}, {sort:{createdAt:-1}});
     // return Pedidos.find({_id:{"$in": user.orders }})
 
@@ -65,13 +65,13 @@ Template.showOrders.helpers({
   },
 
   getProducts: function(){
-    console.log("\n\n -- showOrders --\ngetProducts this:\n",this);
+    // console.log("\n\n -- showOrders --\ngetProducts this:\n",this);
 
     return this.products;
 
   },
   getClient: function(){
-    console.log("\n\n -- showOrders --\ngetProducts this:\n",this);
+    // console.log("\n\n -- showOrders --\ngetProducts this:\n",this);
 
     return Clientes.findOne({_id:this.client});
     ;
@@ -86,20 +86,20 @@ Template.showOpenOrders.helpers({
 
   getOrders: function(){
     var user = Meteor.users.findOne({_id:Meteor.userId()});
-    console.log("\n\n\n-- -- --\ngetOrders:\n",Pedidos.find().fetch());
+    // console.log("\n\n\n-- -- --\ngetOrders:\n",Pedidos.find().fetch());
     return Pedidos.find({_id:{"$in":user.pedidos }},{sort:{createdAt:-1}});
 
     // return Pedidos.find({_id:{"$in": user.orders }})
   },
 
   getProducts: function(){
-    console.log("\n\n -- showOrders --\ngetProducts this:\n",this);
+    // console.log("\n\n -- showOrders --\ngetProducts this:\n",this);
 
     return this.products;
 
   },
   getClient: function(){
-    console.log("\n\n -- showOrders --\ngetProducts this:\n",this);
+    // console.log("\n\n -- showOrders --\ngetProducts this:\n",this);
 
     return Clientes.findOne({_id:this.client});
     ;
@@ -139,7 +139,7 @@ Template.orderOpen.helpers({
 Template.orderOpen.helpers({
 
   getTotal: function() {
-    console.log("\n\n -- gettotall --- -- -- -\n",this.products);
+    // console.log("\n\n -- gettotall --- -- -- -\n",this.products);
 
     var total = 0;
 
@@ -160,13 +160,13 @@ Template.orderOpen.helpers({
   },
 
   getProducts: function(){
-    console.log("\n\n -- showOrders --\ngetProducts this:\n",this);
+    // console.log("\n\n -- showOrders --\ngetProducts this:\n",this);
 
     return this.products;
 
   },
   getClient: function(){
-    console.log("\n\n -- showOrders --\ngetProducts this:\n",this);
+    // console.log("\n\n -- showOrders --\ngetProducts this:\n",this);
 
     return Clientes.findOne({_id:this.client});
     ;
@@ -200,7 +200,7 @@ Template.orderOpen.events({
 
 Template.orderFinalized.helpers({
   getTotal: function() {
-    console.log("\n\n -- gettotall --- -- -- -\n",this.products);
+    // console.log("\n\n -- gettotall --- -- -- -\n",this.products);
 
     var total = 0;
     this.products.map(function(doc) {
@@ -213,13 +213,13 @@ Template.orderFinalized.helpers({
   },
 
   getProducts: function(){
-    console.log("\n\n -- showOrders --\ngetProducts this:\n",this);
+    // console.log("\n\n -- showOrders --\ngetProducts this:\n",this);
 
     return this.products;
 
   },
   getClient: function(){
-    console.log("\n\n -- showOrders --\ngetProducts this:\n",this);
+    // console.log("\n\n -- showOrders --\ngetProducts this:\n",this);
 
     return Clientes.findOne({_id:this.client});
     ;
