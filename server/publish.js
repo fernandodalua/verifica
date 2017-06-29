@@ -46,6 +46,41 @@ Produtos.allow({
   }
 });
 
+Meteor.publish('fretes', function(){
+  return Fretes.find();
+});
+
+
+Fretes.allow({
+  insert: function(){
+    return true;
+  },
+  update: function(){
+    return true;
+  },
+  remove: function(){
+    return true;
+  }
+});
+
+Meteor.publish('transportadores', function(){
+  return Transportadores.find();
+});
+
+
+Transportadores.allow({
+  insert: function(){
+    return true;
+  },
+  update: function(){
+    return true;
+  },
+  remove: function(){
+    return true;
+  }
+});
+
+
 Meteor.publish('images', function(){
   return Images.find();
 });

@@ -84,6 +84,16 @@ Router.map(function() {
     },
   });
 
+  this.route('transport', {
+    path: '/transport',
+    template: 'transporteTemplate',
+    layoutTemplate: 'ApplicationLayout',
+    data: function() {
+      var user = Meteor.users.findOne({_id: Meteor.userId()});
+      return user;
+    },
+  });
+
   this.route('userConfig', {
     path: '/userConfig',
     template: 'userConfigTemplate',

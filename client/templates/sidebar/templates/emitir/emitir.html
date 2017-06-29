@@ -18,15 +18,16 @@
   </div> -->
 
   <div class="col-lg-12">
-    <div class="col-lg-12 form-group">
+    <div class="col-lg-6 form-group">
 
       <div class="panel panel-info">
-        <div class="panel-heading" style="font-size:20px">
-
-          Cliente
-          <button type="button" class="btn btn-success pull-right" data-toggle="modal" data-target="#findClientModal">
-            <i class="fa fa-plus fa-1x"></i>Encontrar Cliente
-          </button>
+        <div class="panel-heading">
+          <a data-toggle="modal" data-target="#findClientModal">
+          <h2>
+            Cliente
+              <i class="fa fa-user" aria-hidden="true" style="float:right;"></i>
+          </h2>
+        </a>
 
         </div>
         <div class="panel-body">
@@ -37,16 +38,44 @@
       </div>
     </div>
 
+    <div class="col-lg-6 form-group">
+
+      <div class="panel panel-warning">
+        <div class="panel-heading">
+
+        <a class="" style="background:Transparent" data-toggle="modal" data-target="#transpModal">
+            <h2 class="text-left">
+              Transportadora
+              <i class="fa fa-truck" aria-hidden="true" style="float:right;"></i>
+
+            </h2>
+        </a>
+
+      </div>
+
+
+        <div class="panel-body">
+          {{> transporteModal}}
+
+
+        </div>
+
+      </div>
+    </div>
+
     <div class="col-lg-12 form-group">
 
       <div class="panel panel-success">
-        <div class="panel-heading" style="font-size:20px">
-
-          Produtos
-          <button type="button" class="btn btn-primary pull-right" data-toggle="modal" data-target="#findProductModal">
-            <i class="fa fa-plus fa-1x"></i>Encontrar Produto
-          </button>
+        <div class="panel-heading">
+          <a data-toggle="modal" data-target="#findProductModal">
+          <h2>
+            Lista de Produtos
+              <i class="fa fa-list" style="float:right" aria-hidden="true"></i>
+          </h2>
+        </a>
         </div>
+
+
         <div class="panel-body">
 
           <div class="col-lg-12">
@@ -76,6 +105,8 @@
 
 
 </template>
+
+
 
 <template name="findClient">
 
@@ -246,7 +277,7 @@
 </template>
 <template name="tributos">
 
-<div class="container">
+  <div class="container">
 
 
   <div class="col-lg-12 form-group">
@@ -299,46 +330,6 @@
 
 </template>
 
-<template name="transporte">
-
-<div class="container">
-
-
-  <div class="col-lg-12 form-group">
-    <h2>Transporte</h2>
-    hues
-  </div>
-</div>
-
-</template>
-
-<template name="transporteModal">
-
-  <button type="button"  id="transporteProduto" class="btn" style="background:Transparent; float: right;" data-toggle="modal" data-target="#transpModal">
-    <i class="fa fa-truck fa-2x" aria-hidden="true"></i>
-  </button>
-
-  <div class="modal fade" id="transpModal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-          <h4 class="modal-title">Transporte</h4>
-        </div>
-        <div class="modal-body">
-
-          {{> transporte}}
-
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-          <!-- <button type="button" class="btn btn-primary"></button> -->
-        </div>
-      </div>
-    </div>
-  </div>
-
-</template>
 
 <template name="showSelectecProducts">
 

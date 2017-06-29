@@ -1,0 +1,205 @@
+<template name="transporteTemplate">
+
+  <h2>Cadastrar Transportadores</h2>
+
+  <!-- {{> transporte}} -->
+
+
+  {{> findTransportTable}}
+
+
+        {{#autoForm id="transportForm" resetOnSuccess=true collection="Transportadores"  type="insert"}}
+        <!-- {{> quickForm schema="Schema.transportadorSchema" id="transportadorSchemaForm" collection="Transportadores" type="insert"}} -->
+
+        <div class="well well-sm">
+          <div class="container-fluid">
+
+            <button type="submit" class="btn btn-lg btn-success" style="float:right;">
+              Cadastrar
+            </button>
+          </div>
+
+        </div>
+
+        {{> afQuickField id="transporte" name="transportador" label="Transportador *" formgroup-class="col-lg-12"}}
+
+
+
+
+        {{/autoForm}}
+
+        <div class="container-fluid">
+
+
+        </div>
+
+        <!-- <div class="col-lg-6 form-group">
+
+          <h3>
+            Retenção
+          </h3>
+          {{> quickForm schema="Schema.retencaoSchema" id="retencaoSchemaForm" type="method"}}
+
+        </div>
+        <div class="col-lg-6 form-group">
+
+          <h3>
+            Veiculo
+          </h3>
+          {{> quickForm schema="Schema.veiculoSchema" id="veiculoSchemaForm" type="method"}}
+
+        </div>
+        <div class="col-lg-6 form-group">
+
+          <h3>
+            Volumes
+          </h3>
+          {{> quickForm schema="Schema.volumeSchema" id="volumeSchemaForm" type="method"}}
+
+        </div>
+ -->
+
+
+
+      <!-- </div> -->
+
+</template>
+
+
+<template name="transporte">
+  <div class="row">
+    <div class="col-lg-12">
+
+      <div class="container">
+        {{#autoForm id="freteForm" resetOnSuccess=true collection="Fretes"  type="method"}}
+        <!-- {{> afQuickField id="transporte" name="transportador" label="Transportador *" formgroup-class="col-lg-12"}} -->
+
+        <h3>
+          Transportador
+        </h3>
+          {{> quickForm schema="Schema.transportadorSchema" id="transportadorSchemaForm" type="method"}}
+
+        -- -- --
+
+        <h3>
+          Retenção
+        </h3>
+        {{> quickForm schema="Schema.retencaoSchema" id="retencaoSchemaForm" type="method"}}
+        -- -- --
+
+        <h3>
+          Veiculo
+        </h3>
+        {{> quickForm schema="Schema.veiculoSchema" id="veiculoSchemaForm" type="method"}}
+        -- -- --
+
+        <h3>
+          Volumes
+        </h3>
+        {{> quickForm schema="Schema.volumeSchema" id="volumeSchemaForm" type="method"}}
+        -- -- --
+
+
+        {{/autoForm}}
+
+
+      </div>
+    </div>
+  </div>
+
+</template>
+
+<template name="findTransport">
+  <div class="col-lg-12 text-left">
+    <div class="col-lg-12">
+      <label id="transportLabel" style="font-size:20px;">{{setTransportLabel}}</label>
+    </div>
+
+
+  </div>
+
+  <!-- Modal -->
+  <div class="modal fade" id="findTransportModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabel">Minhas Transportadoras</h4>
+        </div>
+        <div class="modal-body">
+
+          <div class="row">
+
+            <div class="col-lg-12">
+              {{> findTransportTable}}
+
+            </div>
+
+          </div>
+
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</template>
+
+<template name="findTransportTable">
+
+  <div class="panel panel-default ">
+    <div class="panel-heading">
+      <h3 class="panel-title"></h3>
+    </div>
+    <div class="panel-body">
+
+      {{> reactiveTable settings=settings}}
+
+
+      <!-- <blockquote>
+        {{#each getTransportadores}}
+          {{this._id}}
+          {{this.nome}}
+          <hr>
+        {{/each}}
+      </blockquote> -->
+
+    </div>
+    <div class="panel-footer">
+
+    </div>
+  </div>
+
+</template>
+
+<template name="transporteModal">
+
+  <div class="col-lg-12 text-left">
+    <div class="col-lg-12">
+      <label style="font-size:20px;">{{getTransportador}}</label>
+    </div>
+
+
+  </div>
+
+  <div class="modal fade" id="transpModal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title"> </h4>
+        </div>
+        <div class="modal-body">
+          {{> findTransportTable}}
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary"></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
