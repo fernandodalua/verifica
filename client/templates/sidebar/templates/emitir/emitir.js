@@ -327,7 +327,45 @@ Template.showSelectecProducts.helpers({
 
 Template.showSelectecProducts.events({
   'click #removeProduct': function(event) {
-    selectedProducts.remove(this);
+    var prod = this;
+
+    swal({
+      title: 'Tem certeza?',
+      text: "Apagar este produto da minha lista!",
+      type: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#DD6B55",
+       confirmButtonText: 'Sim!',
+      closeOnConfirm: false
+    },
+    function(){
+      selectedProducts.remove(prod);
+      swal(
+          'Deletado com sucesso!',
+          'O produto foi removido da lista.',
+          'success'
+        )
+    });
+
+    // swal({
+    //   title: 'Tem certeza?',
+    //   text: "Apagar este produto da minha lista!",
+    //   type: 'warning',
+    //   showCancelButton: true,
+    //   closeOnConfirm: false,
+    //   confirmButtonColor: '#3085d6',
+    //   cancelButtonColor: '#d33',
+    //   confirmButtonText: 'Sim!'
+    // }).then(function () {
+    //
+    //   // swal(
+    //   //   'Deletado com sucesso!',
+    //   //   'O produto foi removido da lista.',
+    //   //   'success'
+    //   // )
+    // });
+
+
     // console.log(this);
   },
 
@@ -345,10 +383,62 @@ Template.showSelectecProducts.events({
 });
 
 Template.findProduct.events({
+
   'click .reactive-table tbody tr': function(event) {
+    Session.set("currentProduct",this);
+  },
+
+  'dblclick .reactive-table tbody tr': function(event) {
+    console.log("click table row -- ", this);
+
+    var prod = this;
+
+    var findProd = selectedProducts.findOne({_id:prod._id});
+
+    //Se o produto já está na lista
+    if(findProd){
+      console.log("   if(findProd) - ", findProd);
+
+      prod.quantidade = findProd.quantidade+1;
+      // findProd.quantidade=qnt+1;
+      prod.subtotal = parseFloat((prod.valor*prod.quantidade).toPrecision(3));
+
+      selectedProducts.update({_id:findProd._id}, {$set:{
+        quantidade: prod.quantidade,
+        subtotal : prod.subtotal
+      }});
+
+
+    } else{
+      console.log("else");
+
+      prod.quantidade=1;
+      prod.subtotal = parseFloat((prod.valor*prod.quantidade).toPrecision(3));
+      selectedProducts.insert(prod);
+
+
+    }
+
+
+      // console.log(prod);
+
+       $("#findProductModal").modal('show');
+       $("#qtdProdModal").modal('hide');
+
+
+
+
     // set the blog post we'll display details and news for
     var product = this;
+
     console.log('findProduct: ', product);
+    if(this.quantidade){
+      this.quantidade=this.quantidade+1;
+    }
+    else{
+      this.quantidade = 1;
+    }
+
 
     // selectedProducts.insert(this)
 
@@ -365,24 +455,110 @@ Template.findProduct.events({
 });
 
 Template.qntProduto.events({
+  "change #qtdProdCellInput": function(event, template){
+    console.log("\n -- -- --\nchange to:", this);
+    var val = $("#qtdProdCellInput").val();
+    console.log("val: ", val);
+
+
+  },
+
+  "click #qtdProdCellModal": function(event, template){
+    $("#findProductModal").modal("hide");
+    console.log("\n -- -- --\nmodal -- ", this);
+    // var qntProd = $("#qntProdInput").val();
+    // console.log(qntProd);
+    var prod = Session.get("currentProduct");
+    console.log("prod: ",prod);
+
+
+    swal({
+      title: "Quantidade",
+      text: "de "+prod.nome,
+      type: "input",
+      // input: "number",
+      showCancelButton: true,
+      closeOnConfirm: true,
+      animation: "slide-from-top",
+      inputPlaceholder: "Write something"
+    },
+    function(inputValue){
+      if (inputValue === false) return false;
+
+      if (inputValue === "") {
+        swal.showInputError("You need to write something!");
+        return false
+      }
+      console.log("\n\n--- --- --- -- -- swal -- -- -- -- --");
+      var cProd = selectedProducts.findOne({_id:prod._id});
+
+      var newQtd = parseInt(inputValue);
+
+      if(cProd){
+        console.log("if cProd: ",cProd);
+
+        console.log("newQtd: ", newQtd);
+
+
+        selectedProducts.update({_id:cProd._id}, {$set:{
+          quantidade: newQtd
+        }});
+      } else {
+        console.log("else prod: ",prod);
+
+        // prod.quantidade = new Number(inputValue);
+        prod.quantidade = parseInt(inputValue);
+        prod.subtotal = parseFloat((prod.valor*prod.quantidade).toPrecision(3));
+
+        console.log("prod after: ", prod);
+
+        selectedProducts.insert(prod);
+
+
+        }
+
+      // var newQtd = parseFloat(inputValue).toPrecision(3);
+
+      console.log("produttooooo00000-----",selectedProducts.findOne({_id:prod._id}));
+
+      $("#findProductModal").modal("show");
+      // $("#qtdProdModal").modal("show");
+
+
+      // swal("Nice!", "You wrote: " + inputValue, "success");
+    });
+
+    // var val = $("#qtdProdCellInput").val();
+    // console.log("val: ", val);
+
+
+  },
+
+  "click #closeBtn": function(event, template){
+    $("#qtdProdModal").modal("hide");
+
+  },
+
   "click #saveQnt": function(event, template){
-    var prod = Session.get("addingProd");
+    // var prod = Session.get("addingProd");
+    console.log("\nsave -- ",this);
     var qntProd = $("#qntProdInput").val();
-    var stotal = parseFloat((prod.valor*qntProd).toPrecision(3));
+    console.log(qntProd);
 
-    Session.set("addingProd",null);
-     console.log(prod);
+    // var stotal = parseFloat((prod.valor*qntProd).toPrecision(3));
+    // Session.set("addingProd",null);
+    //  console.log(prod);
 
-     selectedProducts.insert(prod);
+    //  selectedProducts.insert(prod);
 
-     selectedProducts.update({_id:prod._id}, {$set:{
-       quantidade: qntProd,
-       subtotal: stotal
-     }});
+    //  selectedProducts.update({_id:prod._id}, {$set:{
+    //    quantidade: qntProd,
+    //    subtotal: stotal
+    //  }});
 
-     console.log(
-       selectedProducts.find({_id:prod._id}).fetch()
-     );
+    //  console.log(
+    //    selectedProducts.find({_id:prod._id}).fetch()
+    //  );
 
 
     //  $("#findProductModal").modal('show');
@@ -391,29 +567,51 @@ Template.qntProduto.events({
   }
 });
 
-Template.qntProduto.events({
-    'click #addProdBtn': function(event, template) {
+Template.qntProduto.helpers({
+  getCurrentProd: function(){
+    console.log("getProduct -- -- ",this);
+    var prod = Session.get("currentProduct");
 
-      var prod = this;
-      Session.set("addingProd",this);
-      // var qntProd = $("#qntProdInput").val();
+    if (prod) {
+      return prod;
 
-      console.log("\n\naddProd: ", this);
+    } else {
+      return null;
 
-      // $("#findProductModal").modal('hide');
-      $("#qtdProdModal").modal('show');
+    }
 
-
-
-
-
-
-      // console.log("\n\naddProd: ", prod);
+  },
 
 
+  getQuantidade: function(){
+    console.log("\nprod qnt -- ",this);
+    // var row = this;
+    var findProd = selectedProducts.findOne({_id:this._id});
 
+    if(findProd){
+      console.log("[getQuantidade] if findProd -- ", findProd);
+      return findProd.quantidade;
+    } else {
+      console.log("else", findProd);
+      return "0";
+    }
+
+
+  //   var prod = this;
+  //   if(!prod.quantidade){
+  //     prod.quantidade = 10;
+  //   } else{
+  //
+  //   // console.log("prod antes: ",prod);
+  //   // prod.quantidade = 10;
+  //   // console.log("prod depois: ",prod);
+  //
+  // }
+    return this.quantidade;
   }
 });
+
+
 
 Template.findProductTable.helpers({
 
@@ -425,29 +623,40 @@ Template.findProductTable.helpers({
       showFilter: true,
       showRowCount: true,
       // showColumnToggles: true,
-      fields: [{
+      fields: [
+        {
           key: 'codigo',
           label: 'Código',
-          cellClass: 'col-md-4'
+          cellClass: 'col-md-2'
         },
         {
           key: 'nome',
           label: 'Produto',
-          cellClass: 'col-md-4'
+          cellClass: 'col-md-6'
+        },
+        {
+          key: 'unidade',
+          label: 'Unidade',
+          cellClass: 'col-md-1',
+
+        },
+        {
+          key: 'valor',
+          label: 'Valor',
+          cellClass: 'col-md-2',
+
+        },
+        {
+          key: 'add',
+          label: "Qtd",
+          cellClass: 'col-md-1',
+          tmpl: Template.qntProduto,
         },
         {
           key: 'ncm',
           label: 'NCM',
           cellClass: 'col-md-4',
           hidden: true
-        },
-        {
-          key: 'unidade',
-          label: 'Unidade'
-        },
-        {
-          key: 'valor',
-          label: 'Valor'
         },
         {
           key: 'ean',
@@ -469,17 +678,7 @@ Template.findProductTable.helpers({
           label: 'Valor Tributável',
           hidden: true
         },
-        {
-          key: 'add',
-          label: '',
-          tmpl: Template.qntProduto,
-          // fn: function(value, object, key) {
-          //   console.log("\n\nquantidade:", value, object, key);
-          //
-          //   return new Spacebars.SafeString("<input id='qntProdInput' type='Number' name='qnt' value='1'><button type='button' id='addProdBtn' class='btn btn-defaulnamet'><i class='fa fa-plus fa-2x'></i></button>");
-          // }
 
-        },
       ]
     };
   }
