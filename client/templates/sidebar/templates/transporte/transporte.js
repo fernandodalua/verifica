@@ -73,15 +73,27 @@ Template.findTransportTable.events({
 
 
 
-    $("#findTransportModal").modal("hide");
+    $("#transpModal").modal("hide");
 
 
   }
 });
 
+
+Template.transporteModal.onCreated(function () {
+  Session.set("transportadorNota", null);
+  // selectedProducts.remove({});
+
+
+
+});
+
+
 Template.transporteModal.helpers({
   getTransportador: function(){
     var transp = Session.get("transportadorNota");
+    // Session.set("transportadorNota", null);
+
     console.log("transp: ",transp);
     return transp.transportador.nome;
 

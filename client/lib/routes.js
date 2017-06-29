@@ -56,6 +56,19 @@ Router.map(function() {
     template: 'issueTemplate',
     layoutTemplate: 'ApplicationLayout',
     data: function() {
+
+      return Meteor.users.findOne({_id: Meteor.userId()});
+
+    },
+  });
+
+  //Impostos
+  this.route('taxes', {
+    path: '/taxes',
+    template: 'taxesTemplate',
+    layoutTemplate: 'ApplicationLayout',
+    data: function() {
+
       return Meteor.users.findOne({_id: Meteor.userId()});
 
     },

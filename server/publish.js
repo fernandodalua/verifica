@@ -10,6 +10,40 @@ Meteor.publish("posts", function () {
  return Posts.find();
 });
 
+Meteor.publish('tributos', function(){
+  return Tributos.find();
+});
+
+
+Tributos.allow({
+  insert: function(){
+    return true;
+  },
+  update: function(){
+    return true;
+  },
+  remove: function(){
+    return true;
+  }
+});
+
+
+Meteor.publish('notas', function(){
+  return Notas.find();
+});
+
+
+Notas.allow({
+  insert: function(){
+    return true;
+  },
+  update: function(){
+    return true;
+  },
+  remove: function(){
+    return true;
+  }
+});
 
 
 Meteor.publish('clients', function(){

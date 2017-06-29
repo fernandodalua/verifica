@@ -7,7 +7,6 @@ Template.issueTemplate.onCreated(function () {
 
 
 
-
 });
 
 
@@ -23,48 +22,45 @@ Template.issueTemplate.helpers({
 });
 
 Template.issueTemplate.events({
-  "click #saveOrder": function(event, template){
-    // produto = [ID, valor, quantidade]
+  "click #saveNFE": function(event, template){
 
-    var products = selectedProducts.find({});
-    var client = Session.get("clientNota");
-    // console.log("\n\n\n\n",client);
-    // // var oClient = {
-    // //   nome: client.nome,
-    // //   cpf: client.cpf
-    // // };
-    //
-    console.log("\n\nclient.nome:\n",client.nome);
+    var cliente = Session.get("clientNota");
+    var transportador = Session.get("transportadorNota");
+    var produtos = selectedProducts.find({});
 
+    console.log("\n\n-- -- -- -- -- -- Emitindo nota -- -- -- -- -- -- ");
+    console.log("client: ",cliente);
+    console.log("transportador: ",transportador);
+    console.log("products: ",produtos.fetch());
 
     var order = new Object({
-      client: client._id,
-      products: products.fetch(),
+      client: cliente,
+      transport: transportador,
+      products: produtos.fetch(),
       status: true
     });
-    console.log("\n\n-- -- -- -- -- -- -- -- -- -- -- -- ");
+    console.log("order: ",order);
 
-    console.log("\nproducts:\n",client._id);
-    console.log("\nproducts:\n",products.fetch());
-    console.log("\norderClient:\n",order);
+    // console.log("\nproducts:\n",client._id);
+    // console.log("\nproducts:\n",products.fetch());
 
-     var myOrderId = Pedidos.insert({
+     var myOrderId = Notas.insert({
        client: order.client,
        products: order.products,
        status: order.status
      });
 
-     var nota = Pedidos.find({_id:myOrderId}).fetch();
+     var nota = Notas.find({_id:myOrderId}).fetch();
 
     //  Session.set("notaID",nota);
 
-     console.log(nota);
-
-
+     console.log("\n -- -- nota -- --\n  ",nota);
 
      var user = Meteor.user();
-     var cnpj = user.profile.cnpj;
-     var cert = "a";
+    //  var cnpj = user.profile.cnpj;
+    //  var cert = "a";
+
+     nota.emitente = user;
      //
     //  if(cert == null){
     //    cert = Meteor.user().profile.certificado;
@@ -83,7 +79,7 @@ Template.issueTemplate.events({
     //  console.log("\n\n -- -- resposta -- --\n"+resposta);
 
     // var response = Meteor.call('getPost',query);
-    Meteor.call('getPost',query,function(error, result){
+    Meteor.call('getPost',nota, function(error, result){
       // var response = Session.get("httpResponse");
       // swal("confirm","resposta:",result.data);
       console.log("call result - ",result);

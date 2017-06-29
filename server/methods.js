@@ -95,69 +95,39 @@ Meteor.methods({
   },
 
   getPost: function(postQuery){
+    console.log("\n\n-- -- -- -- getPost -- -- -- -- ");
 
     // var notaID = Meteor.user().profile.pedidos;
     // console.log("notaID: ", notaID);
-    var nota = Pedidos.findOne({_id:"gvttN9LAXqrP9Rs4A"});
-    var cliente = Clientes.findOne({_id:nota.client});
+    // var nota = Notas.findOne({_id:"gvttN9LAXqrP9Rs4A"});
 
-    console.log("nota : \n",nota);
-    console.log("cliente : \n",cliente);
-    nota.client = cliente;
+    // var cliente = Clientes.findOne({_id:nota.client});
+
+    // console.log("cliente : \n",cliente);
+    // nota.client = cliente;
     // var nota = Session.get("notaID");
     // var nota = new Object({
     //
     // });
+    // var nota = Session.get("nfe");
+    // console.log("nota : \n",nota);
+    console.log("postQuery: ",postQuery);
 
 
-
-    console.log("\nnota: ",nota);
-    // swal("confirm","resposta:",response);
     var myData = "oie";
 
-     console.log("\n\n-- getPost --\npostQuery: "+postQuery);
 
-     if(nota){
-        // var myNota = Pedidos.find({_id:nota}).fetch();
-        console.log("\nnota: ",nota);
-     }
-     else{ console.log("nota vazia");
-     }
-
-
-// return 'oi';
-  //  var results = HTTP.call("POST","http://localhost/verifica/index.php"+postQuery);
-  //  console.log(results);
+    //  if(nota){
+    //     // var myNota = Pedidos.find({_id:nota}).fetch();
+    //     console.log("\nnota: ",nota);
+    //  }
+    //  else{ console.log("nota vazia");
+    //  }
 
 
-  // HTTP.call('POST', 'http://177.35.44.10/verifica/nfe.php', {
-  //   data: { some: 'json', stuff: 1 }
-  // }, (error, result) => {
-  //   if (!error) {
-  //     console.log("foiiii",result);
-  //   }
-  // });
-
-  // try {
-  //   const result = HTTP.call( 'GET', 'http://177.35.44.10/verifica/nfe.php'+postQuery,
-  //   function( error, response ) {
-  //     if ( error ) {
-  //       console.log("http error:", error );
-  //     } else {
-  //       console.log("http response:", response );
-  //       // Session.set("httpResponse",response.data);
-  //     }
-  //   });
-  //
-  //   return true;
-  // } catch (e) {
-  //   // Got a network error, timeout, or HTTP error in the 400 or 500 range.
-  //
-  //   return false;
-  // }
 
   // Meteor.http.get( 'http://177.35.44.10/verifica/nfe.php'+postQuery,
-  Meteor.http.get('http://177.35.44.10/verifica/nfe.php',{params:{nfe:nota}},
+  Meteor.http.get('http://177.35.44.10/verifica/nfe.php',{params:{postQuery}},
    function( error, response ) {
     if ( error ) {
       console.log("\n\nhttp error:", error,'\nquery: ' );
