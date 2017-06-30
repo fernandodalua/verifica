@@ -95,7 +95,7 @@ Meteor.methods({
   },
 
   getPost: function(postQuery){
-    console.log("\n\n-- -- -- -- getPost -- -- -- -- ");
+    console.log("\n\n\n\n-- -- -- -- getPost -- -- -- -- ");
 
     // var notaID = Meteor.user().profile.pedidos;
     // console.log("notaID: ", notaID);
@@ -112,11 +112,13 @@ Meteor.methods({
     // var nota = Session.get("nfe");
     // console.log("nota : \n",nota);
     console.log("postQuery: ",postQuery);
+    // var myData = new Object(postQuery[0]);
+    // console.log("myData: ",myData);
 
 
-    var myData = "oie";
 
 
+    // nota
     //  if(nota){
     //     // var myNota = Pedidos.find({_id:nota}).fetch();
     //     console.log("\nnota: ",nota);

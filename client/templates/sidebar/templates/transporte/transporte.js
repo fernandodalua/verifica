@@ -93,9 +93,14 @@ Template.transporteModal.helpers({
   getTransportador: function(){
     var transp = Session.get("transportadorNota");
     // Session.set("transportadorNota", null);
+    if (transp) {
+      console.log("transp: ",transp);
+      return transp.transportador.nome;
 
-    console.log("transp: ",transp);
-    return transp.transportador.nome;
+    } else {
+      return null;
+    }
+
 
   }
 

@@ -50,7 +50,7 @@ Template.issueTemplate.events({
        status: order.status
      });
 
-     var nota = Notas.find({_id:myOrderId}).fetch();
+     var nota = Notas.findOne({_id:myOrderId});
 
     //  Session.set("notaID",nota);
 
@@ -59,8 +59,21 @@ Template.issueTemplate.events({
      var user = Meteor.user();
     //  var cnpj = user.profile.cnpj;
     //  var cert = "a";
+    var emitente = new Object({
+      nome: user.profile.nome,
+      cnpj: user.profile.cnpj,
+      razaosocial: user.profile.razaosocial,
+      nomefantasia: user.profile.nomefantasia,
+      inscricaoestadual: user.profile.inscricaoestadual,
+      inscricaomunicipal: user.profile.inscricaomunicipal,
+      cnae: user.profile.cnae,
+      crt: user.profile.crt
+    });
 
-     nota.emitente = user;
+
+    nota.emitente = emitente;
+    nota.transportador = transportador;
+    console.log("nota final - ",nota);
      //
     //  if(cert == null){
     //    cert = Meteor.user().profile.certificado;
@@ -71,7 +84,7 @@ Template.issueTemplate.events({
 
      //?nome=&cnpj=19546609000199&arquivo=&senha=
       // var query = "?nome=&cnpj="+cnpj+"&arquivo="+cert+"&senha="+user.profile.senhacertificado;
-       var query = "?a=gay";
+      //  var query = "?a=gay";
 
 
 
@@ -302,7 +315,7 @@ Template.showSelectecProducts.helpers({
   },
 
   getValor: function(){
-    console.log("\n\n\n\nvalor",this);
+    // console.log("\n\n\n\nvalor",this);
     var val = this.valor;
 
     return "R$"+String(val.toFixed(2));
@@ -310,7 +323,7 @@ Template.showSelectecProducts.helpers({
     // return subtotal;
   },
   getSubtotal: function(){
-    console.log("\n\n\n\nsubtotal",this);
+    // console.log("\n\n\n\nsubtotal",this);
     var stotal = this.quantidade*this.valor
 
     return "R$"+String(stotal.toFixed(2));
@@ -465,7 +478,7 @@ Template.qntProduto.events({
     // var qntProd = $("#qntProdInput").val();
     // console.log(qntProd);
     var prod = Session.get("currentProduct");
-    console.log("prod: ",prod);
+    // console.log("prod: ",prod);
 
 
     swal({
@@ -506,7 +519,7 @@ Template.qntProduto.events({
         prod.quantidade = parseInt(inputValue);
         prod.subtotal = parseFloat((prod.valor*prod.quantidade).toPrecision(3));
 
-        console.log("prod after: ", prod);
+        // console.log("prod after: ", prod);
 
         selectedProducts.insert(prod);
 
@@ -565,7 +578,7 @@ Template.qntProduto.events({
 
 Template.qntProduto.helpers({
   getCurrentProd: function(){
-    console.log("getProduct -- -- ",this);
+    // console.log("getProduct -- -- ",this);
     var prod = Session.get("currentProduct");
 
     if (prod) {
@@ -580,7 +593,7 @@ Template.qntProduto.helpers({
 
 
   getQuantidade: function(){
-    console.log("\nprod qnt -- ",this);
+    // console.log("\nprod qnt -- ",this);
     // var row = this;
     var findProd = selectedProducts.findOne({_id:this._id});
 

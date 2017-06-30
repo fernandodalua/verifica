@@ -4,7 +4,7 @@
 Template.navbarHeader.helpers({
   activeIfTemplateIs: function (template) {
     var currentRoute = Router.current();
-    console.log(template, currentRoute, currentRoute.lookupTemplate());
+    // console.log(template, currentRoute, currentRoute.lookupTemplate());
     return currentRoute &&
     template === currentRoute.lookupTemplate() ? 'active' : '';
   }

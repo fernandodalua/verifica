@@ -92,6 +92,7 @@ matb33:collection-hooks@0.8.4
 mdg:validation-error@0.5.1
 meteor@1.6.1
 meteor-base@1.1.0
+meteortoys:toykit@4.0.1
 minifier-css@1.2.16
 minifier-js@2.1.0
 minimongo@1.2.1
@@ -103,6 +104,7 @@ momentjs:moment@2.10.6
 mongo@1.1.18
 mongo-id@1.0.6
 mongo-livedata@1.0.12
+msavin:mongol@4.0.1
 npm-bcrypt@0.9.3
 npm-mongo@2.2.24
 observe-sequence@1.0.16

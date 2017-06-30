@@ -56,14 +56,14 @@ Template.editClientTemplate.helpers({
   },
 
   getUser: function(){
-    console.log("getUser",this);
+    // console.log("getUser",this);
   }
 
 });
 
 Template.showClients.helpers({
   getClientes: function(){
-    console.log("\n\n ----- getClients",this);
+    // console.log("\n\n ----- getClients",this);
     return Clientes.find({_id:{"$in": this.clientes }});
 
   },
