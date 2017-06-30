@@ -1,3 +1,6 @@
+import { EJSON } from 'meteor/ejson'
+
+
 Meteor.methods({
   /* numActivity: limits number of recent activity */
   getRecentActivity: function(numActivity) {
@@ -94,76 +97,28 @@ Meteor.methods({
     }
   },
 
-  getPost: function(postQuery){
+  swSaveNFE: function(postQuery){
     console.log("\n\n\n\n-- -- -- -- getPost -- -- -- -- ");
-
-    // var notaID = Meteor.user().profile.pedidos;
-    // console.log("notaID: ", notaID);
-    // var nota = Notas.findOne({_id:"gvttN9LAXqrP9Rs4A"});
-
-    // var cliente = Clientes.findOne({_id:nota.client});
-
-    // console.log("cliente : \n",cliente);
-    // nota.client = cliente;
-    // var nota = Session.get("notaID");
-    // var nota = new Object({
-    //
-    // });
-    // var nota = Session.get("nfe");
-    // console.log("nota : \n",nota);
-    console.log("postQuery: ",postQuery);
-    // var myData = new Object(postQuery[0]);
-    // console.log("myData: ",myData);
+    console.log("\n -- -- -- <POSTQUERY> -- -- -- \n\n", postQuery,"\n\n -- -- -- </POSTQUERY> -- -- --\n\n");
+    var nfe = EJSON.stringify(postQuery,{indent:true});
+    // console.log('\n\n-- nfe (stringify) --\n', nfe);
 
 
+    Meteor.http.get('http://177.35.44.10/verifica/nfe.php',{params:{a:nfe}},
+     function( error, response ) {
+      if ( error ) {
+        console.log("\n\n\n\n -- http error:\n", error );
+        return error;
+      } else {
+        console.log("\n -- -- -- <RESPOSTA> -- -- --\n\n", response,"\n\n-- -- -- </RESPOSTA> -- -- --\n\n" );
+        // Session.set("httpResponse",response);
 
+        // swal("success","Resposta:", response.content)
+        return response;
 
-    // nota
-    //  if(nota){
-    //     // var myNota = Pedidos.find({_id:nota}).fetch();
-    //     console.log("\nnota: ",nota);
-    //  }
-    //  else{ console.log("nota vazia");
-    //  }
+      }
+    });
 
-
-
-  // Meteor.http.get( 'http://177.35.44.10/verifica/nfe.php'+postQuery,
-  Meteor.http.get('http://177.35.44.10/verifica/nfe.php',{params:{postQuery}},
-   function( error, response ) {
-    if ( error ) {
-      console.log("\n\nhttp error:", error,'\nquery: ' );
-
-    } else {
-      console.log("\n\nhttp response:", response,'\nquery: ' );
-      // Session.set("httpResponse",response);
-
-
-    }
-  });
-
-
-
-  // swal("confirm","response:",results);
-
-    // postQuery.JSON.stringify(obj);
-
-    // console.log("query -- ",query);
-
-    // var resposta = HTTP.call('POST','http://localhost/verifica/nfe.php', {
-    //   data: { 'a':'json' }
-    // }, (error, result) => {
-    //   if (!error) {
-    //     // Session.set('twizzled', true);
-    //     console.log("return result-- ",result);
-    //     return result;
-    //   }
-    // });
-    // var resposta = HTTP.get( 'http://localhost/verifica/nfe.php'+postQuery );
-
-    //  console.log(resposta);
-
-      // return resposta.data;
 
 },
 

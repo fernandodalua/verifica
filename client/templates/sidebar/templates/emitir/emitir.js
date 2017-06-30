@@ -1,3 +1,5 @@
+import { EJSON } from 'meteor/ejson'
+
 
 const selectedProducts = new Mongo.Collection(null);
 
@@ -18,6 +20,19 @@ Template.issueTemplate.helpers({
 
   },
 
+  getRespostaNFE: function() {
+    var resp = Session.get("nfeResposta");
+
+    console.log("\n\n -- \n\n-- \n\n-- resp, ", resp);
+    if (resp) {
+      return resp.content;
+    } else {
+      return null;
+    }
+
+
+  },
+
 
 });
 
@@ -26,39 +41,15 @@ Template.issueTemplate.events({
 
     var cliente = Session.get("clientNota");
     var transportador = Session.get("transportadorNota");
-    var produtos = selectedProducts.find({});
+    var produtos = selectedProducts.find().fetch();
 
     console.log("\n\n-- -- -- -- -- -- Emitindo nota -- -- -- -- -- -- ");
     console.log("client: ",cliente);
     console.log("transportador: ",transportador);
-    console.log("products: ",produtos.fetch());
+    console.log("sProducts: ",produtos);
 
-    var order = new Object({
-      client: cliente,
-      transport: transportador,
-      products: produtos.fetch(),
-      status: true
-    });
-    console.log("order: ",order);
+    var user = Meteor.user();
 
-    // console.log("\nproducts:\n",client._id);
-    // console.log("\nproducts:\n",products.fetch());
-
-     var myOrderId = Notas.insert({
-       client: order.client,
-       products: order.products,
-       status: order.status
-     });
-
-     var nota = Notas.findOne({_id:myOrderId});
-
-    //  Session.set("notaID",nota);
-
-     console.log("\n -- -- nota -- --\n  ",nota);
-
-     var user = Meteor.user();
-    //  var cnpj = user.profile.cnpj;
-    //  var cert = "a";
     var emitente = new Object({
       nome: user.profile.nome,
       cnpj: user.profile.cnpj,
@@ -70,51 +61,145 @@ Template.issueTemplate.events({
       crt: user.profile.crt
     });
 
-
-    nota.emitente = emitente;
-    nota.transportador = transportador;
-    console.log("nota final - ",nota);
-     //
-    //  if(cert == null){
-    //    cert = Meteor.user().profile.certificado;
-     //
-    //  }
-
-     // var num2 = $("#n2").val();
-
-     //?nome=&cnpj=19546609000199&arquivo=&senha=
-      // var query = "?nome=&cnpj="+cnpj+"&arquivo="+cert+"&senha="+user.profile.senhacertificado;
-      //  var query = "?a=gay";
-
-
-
-
-    //  console.log("\n\n -- -- resposta -- --\n"+resposta);
-
-    // var response = Meteor.call('getPost',query);
-    Meteor.call('getPost',nota, function(error, result){
-      // var response = Session.get("httpResponse");
-      // swal("confirm","resposta:",result.data);
-      console.log("call result - ",result);
-      // console.log("call response - ",response);
+    var nota = new Object({
+      emitente: emitente,
+      cliente: cliente,
+      transportador: transportador,
+      produtos: produtos
     });
 
-// console.log("-- response:\n",response);
-    //  Meteor.call('getPost', function(error, result){
-    //   //  Session.set('responsePost', result);
-    //    console.log("Result",result);
-     //
-    //  });
+    var notaID = Notas.insert(nota);
+    nota._id = notaID;
+    console.log("nota: ",nota);
 
-    // Meteor.call('getPost',nota, function(error, result){
-    //   // swal("confirm","result",result);
-    //   // console.log(result);
-    //
-    // });
 
-     Meteor.users.update({_id:Meteor.userId()}, {$push:{
-       pedidos:myOrderId
-     }});
+    Meteor.call('swSaveNFE', nota, function(error, result){
+      if (error) {
+        console.log("erro: \n", error);
+      } else {
+        // console.log("resposta: \n\n",result);
+        Session.set("nfeResposta", result);
+
+
+      }
+    });
+    // var respostaCall =
+    // console.log(respostaCall);
+    // swal("success",respostaCall);
+
+//
+//
+//
+//
+//     // var produtos = [];
+//     // var i =0
+//     // var somatotal = selectedProducts.find({}).sum('subtotal');
+//
+//     // console.log(selectedprodutos.length);
+//     // for(i=0; i < sProducts.length;i++){
+//     //   // produtos[i] = sProducts[i];
+//     //   // produtos.push({
+//     //   var produto = new Object({
+//     //     item: i,
+//     //     codigo: sProducts[i].codigo,
+//     //     nome: sProducts[i].nome,
+//     //     ean: sProducts[i].ean,
+//     //     ncm: sProducts[i].ncm,
+//     //     unidade: sProducts[i].unidade,
+//     //     quantidade: sProducts[i].quantidade,
+//     //     valor: sProducts[i].valor,
+//     //     subtotal: sProducts[i].subtotal,
+//     //     // total: somatotal,
+//     //     unidadetributavel: sProducts[i].unidadetributavel,
+//     //     valortributavel: sProducts[i].valortributavel,
+//     //     eantributavel: sProducts[i].eantributavel,
+//     //   });
+//     //
+//     //   produtos[i]=produto;
+//     //
+//     //
+//     //   console.log("for i: ",i);
+//     //   // vproduto="produto"+i;
+//     //   // console.log("for vproduto: ",vproduto);
+//     //
+//     //
+//     //   console.log("for produtos",produtos);
+//     // }
+//
+//     // console.log("-- -- produtos: ", produtos);
+//
+//     var order = new Object({
+//       client: cliente,
+//       transport: transportador,
+//       products: produtos,
+//       status: true
+//     });
+//     console.log("order: ",order);
+//
+//     // console.log("\nproducts:\n",client._id);
+//     // console.log("\nproducts:\n",products.fetch());
+//
+//      var myOrderId = Notas.insert({
+//        client: order.client,
+//        products: order.products,
+//        status: order.status
+//      });
+//
+//      var nota = Notas.findOne({_id:myOrderId});
+//
+//     //  Session.set("notaID",nota);
+//
+//      console.log("\n -- -- nota -- --\n  ",nota);
+//
+//     //  var cnpj = user.profile.cnpj;
+//     //  var cert = "a";
+//
+//
+//
+//     nota.emitente = emitente;
+//     nota.transportador = transportador;
+//     console.log("-- nota final -- ",nota);
+//      //
+//     //  if(cert == null){
+//     //    cert = Meteor.user().profile.certificado;
+//      //
+//     //  }
+//
+//      // var num2 = $("#n2").val();
+//
+//      //?nome=&cnpj=19546609000199&arquivo=&senha=
+//       // var query = "?nome=&cnpj="+cnpj+"&arquivo="+cert+"&senha="+user.profile.senhacertificado;
+//       //  var query = "?a=gay";
+//
+//
+//
+//
+//     //  console.log("\n\n -- -- resposta -- --\n"+resposta);
+//
+//     // var response = Meteor.call('getPost',query);
+//     Meteor.call('swSaveNFE',nota, function(error, result){
+//       // var response = Session.get("httpResponse");
+//       // swal("confirm","resposta:",result.data);
+//       console.log("call result\n ",result);
+//       // console.log("call response - ",response);
+//     });
+//
+// // console.log("-- response:\n",response);
+//     //  Meteor.call('getPost', function(error, result){
+//     //   //  Session.set('responsePost', result);
+//     //    console.log("Result",result);
+//      //
+//     //  });
+//
+//     // Meteor.call('getPost',nota, function(error, result){
+//     //   // swal("confirm","result",result);
+//     //   // console.log(result);
+//     //
+//     // });
+//
+//      Meteor.users.update({_id:Meteor.userId()}, {$push:{
+//        pedidos:myOrderId
+//      }});
 
 
   }
