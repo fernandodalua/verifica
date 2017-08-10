@@ -48,3 +48,5 @@ jimmiebtlr:bootstrap-wysihtml5
 peppelg:bootstrap-3-modal
 ostrio:meteor-root
 msavin:mongol
+steeve:jquery-qrcode
+hitchcott:qr-scanner

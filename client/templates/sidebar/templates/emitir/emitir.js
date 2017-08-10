@@ -23,8 +23,8 @@ Template.issueTemplate.helpers({
   getRespostaNFE: function() {
     var resp = Session.get("nfeResposta");
 
-    console.log("\n\n -- \n\n-- \n\n-- resp, ", resp);
     if (resp) {
+      console.log("\n\n -- \n\n-- \n\n-- resp, ", resp);
       return resp.content;
     } else {
       return null;

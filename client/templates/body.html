@@ -1,0 +1,21 @@
+
+<template name="ApplicationLayout">
+  <header>
+  {{> navbarHeader}}
+  </header>
+  <body>
+
+    {{#with getCurrentUser}}
+    <div class="col-lg-3 pull-left">
+      {{> leftNavbar}}
+    </div>
+    <!-- {{> SignupModal}} -->
+    <div class="col-lg-9">
+      {{> yield}}
+    </div>
+    {{/with}}
+
+
+</body>
+
+</template>

@@ -1,0 +1,35 @@
+<template name="leftNavbar">
+  <div class="alert-danger container-fluid form-group text-center" style="border-radius: 25px; height:320px;">
+
+      <div class="">
+        <a class="btn" id="changeProfilePhoto">
+
+          {{#if this.profile.picture}}
+          <img class="img-responsive" src={{getProfilePicture.url store='avatar'}} alt="">
+          {{else}}
+
+          <img class="img-circle" src="/defaulPicture.jpg" alt="">
+          {{/if}}
+
+        </a>
+        <input type="file" multiple="false" id="addProfilePhoto" class="addProfilePhoto" style="display:none">
+
+
+      </div>
+      <a href="/profile/edit/{{this._id}}">
+        <h3>
+          {{getUserName}}
+        </h3>
+      </a>
+    </div>
+
+    <div class="alert-success col-lg-12 container-fluid" style="border-radius: 25px;">
+      {{> sidebarHeader}}
+
+    </div>
+  <hr>
+
+
+
+
+</template>

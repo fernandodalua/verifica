@@ -1,0 +1,266 @@
+
+<template name="tributosTemplate">
+
+  {{#autoForm id="tributosForm" type="insert" collection="Tributos" }}
+
+  <div class="row">
+    <button id="icmsBtn" type="button" class="btn btn-default">
+      ICMS
+    </button>
+    <button id="ipiBtn" type="button" class="btn btn-default">
+      IPI
+    </button>
+    <button id="pisBtn" type="button" class="btn btn-default">
+      PIS
+    </button>
+    <button id="cofinsBtn" type="button" class="btn btn-default">
+      COFINS
+    </button>
+    <button id="iimportacaoBtn" type="button" class="btn btn-default">
+      Imp. de Importação
+    </button>
+    <button id="issqnBtn" type="button" class="btn btn-default">
+      ISSQN
+    </button>
+    <button id="ipidevolvidoBtn" type="button" class="btn btn-default">
+      IPI Devolvido
+    </button>
+    <button id="icmsinterestadualBtn" type="button" class="btn btn-default">
+      ICMS em Op. Interestaduais
+    </button>
+  </div>
+
+  <!-- {{> Template.dynamic template=tab data=tabData}} -->
+
+  {{#if showICMS}}
+  {{> icms}}
+  {{/if}}
+
+  {{#if showPIS}}
+  {{> pis}}
+  {{/if}}
+
+  {{#if showIPI}}
+  {{> ipi}}
+  {{/if}}
+
+  {{#if showCOFINS}}
+  {{> cofins}}
+  {{/if}}
+
+  {{#if showIImportacao}}
+  {{> iimportacao}}
+  {{/if}}
+
+  {{#if showISSQN}}
+  {{> issqn}}
+  {{/if}}
+
+  {{#if showIPIDevolvido}}
+  {{> ipidevolvido}}
+  {{/if}}
+
+  {{#if showICMSInterestadual}}
+  {{> icmsinterestadual}}
+  {{/if}}
+
+
+  <button type="submit" class="btn btn-primary">Salvar</button>
+
+  {{/autoForm}}
+
+
+</template>
+
+
+
+<template name="tributosModal">
+
+
+  <button class="btn btn-primary" id="tributosProduct"  type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+    <i class="fa fa-university fa-2x" aria-hidden="true"></i>
+  </button>
+  <div class="collapse" id="collapseExample">
+      <div class="well">
+        <div class="row">
+
+        {{> Template.dynamic template=tab data=tabData}}
+
+      </div>
+    </div>
+
+  </div>
+
+
+
+
+  <!-- <button type="button"  id="tributosProduct" class="btn" style="background:Transparent; float: right;" data-toggle="modal" data-target="#tribModal">
+    <i class="fa fa-university fa-2x" aria-hidden="true"></i>
+  </button> -->
+
+  <div class="modal fade" id="tribModal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <div class="col-lg-12">
+        </div>
+        <div class="modal-body">
+          {{#autoForm id="tributosForm" type="insert" collection="Tributos" }}
+
+          <!-- {{> tributos}} -->
+
+          {{> Template.dynamic template=tab data=tabData}}
+
+          <!-- {{#with getTributoTab}} -->
+
+          <!-- {{/with}} -->
+
+          <!-- {{> }} -->
+          <footer>
+            <button type="submit" class="btn btn-primary">Salvar</button>
+          </footer>
+
+          {{/autoForm}}
+
+      </div>
+
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+
+
+
+      </div>
+    </div>
+  </div>
+  </div>
+
+</template>
+
+
+<template name="icmsTemplate">
+
+</template>
+
+
+<template name="icms">
+  <h2>ICMS</h2>
+
+  <div class="row">
+
+    <div class="container-fluid">
+
+
+      <!-- {{> Template.dynamic template=tab data=tabData}} -->
+
+      <!-- {{> quickForm id="demo"   schema="icmsTributoSchema" type="insert"}} -->
+      <!-- {{> afQuickField id="simplesnacionalField" name="icms" class="col-lg-1"}} -->
+
+
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">ICMS</h3>
+        </div>
+        <div class="panel-body">
+
+          {{> afQuickField id="simplesnacionalField" name="icms.regime"}}
+
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">Simples Nacional</h3>
+            </div>
+            <div class="panel-body">
+              {{> afQuickField id="simplesnacionalField" name="icms.simplesnacional.situacaotributaria" formgroup-class="col-lg-6"}}
+              {{> afQuickField id="simplesnacionalField" name="icms.simplesnacional.origem" formgroup-class="col-lg-6"}}
+              {{> afQuickField id="simplesnacionalField" name="icms.simplesnacional.aliquotacc" formgroup-class="col-lg-6"}}
+              {{> afQuickField id="simplesnacionalField" name="icms.simplesnacional.creditoicms" formgroup-class="col-lg-6"}}
+
+
+
+
+
+              <div class="col-lg-6">
+                {{> afQuickField id="simplesnacionalField" name="icms.simplesnacional.icms"}}
+              </div>
+              <div class="col-lg-6">
+                {{> afQuickField id="simplesnacionalField" name="icms.simplesnacional.icmsst"}}
+              </div>
+
+            </div>
+            <div class="panel-footer">
+
+            </div>
+          </div>
+
+        </div>
+        <div class="panel-footer">
+
+        </div>
+
+      </div>
+
+
+      <!-- <div class="col-lg-6 form-group"> -->
+        <!-- {{> afQuickField formgroup-class="col-lg-6" id="icmsField" name="icms.simplesnacional.icms"}} -->
+      <!-- </div> -->
+      <!-- <div class="col-lg-6 form-group"> -->
+        <!-- {{> afQuickField id="icmsstField" name="icms.simplesnacional.icmsst" formgroup-class="col-lg-6"}} -->
+      <!-- </div> -->
+
+      <!-- {{> afQuickField id="icmsField" name="icms" label="ICMS" formgroup-class="col-lg-12"}} -->
+
+      <!-- {{> afQuickFields}} -->
+      <!-- {{> afQuickField id="ipiField" name="ipi" label="IPI" formgroup-class="col-lg-12"}}
+      {{> afQuickField id="pisField" name="pis" label="PIS" formgroup-class="col-lg-12"}}
+      {{> afQuickField id="cofinsField" name="cofins" label="COFINS" formgroup-class="col-lg-12"}}
+      {{> afQuickField id="impostoimportacaoField" name="impostoimportacao" label="Imposto de Importação" formgroup-class="col-lg-12"}}
+      {{> afQuickField id="issqnField" name="issqn" label="ISSQN" formgroup-class="col-lg-12"}}
+      {{> afQuickField id="ipidevolvidoField" name="ipidevolvido" label="IPI Devolvido" formgroup-class="col-lg-12"}}
+      {{> afQuickField id="icmsinterestadualField" name="icmsinterestadual" label="ICMS Interestadual" formgroup-class="col-lg-12"}} -->
+
+
+
+
+
+    </div>
+
+  </div>
+
+
+</template>
+<template name="ipi">
+  <h2>IPI</h2>
+  {{> afQuickField id="ipiField" name="ipi" class="col-lg-12"}}
+
+</template>
+<template name="pis">
+  <h2>PIS</h2>
+  {{> afQuickField id="pisField" name="pis" class="col-lg-12"}}
+
+</template>
+<template name="cofins">
+  <h2>cofins</h2>
+  {{> afQuickField id="cofinsField" name="cofins" class="col-lg-12"}}
+
+</template>
+<template name="iimportacao">
+  <h2>impostoimportacao</h2>
+  {{> afQuickField id="iimportacaoField" name="iimportacao" class="col-lg-6"}}
+
+</template>
+<template name="issqn">
+  <h2>issqn</h2>
+  {{> afQuickField id="issqnField" name="issqn" class="col-lg-6"}}
+
+</template>
+<template name="ipidevolvido">
+  <h2>ipidevolvido</h2>
+  {{> afQuickField id="ipidevolvidoField" name="ipidevolvido" class="col-lg-6"}}
+
+</template>
+<template name="icmsinterestadual">
+  <h2>icmsinterestadual</h2>
+  {{> afQuickField id="icmsinterestadualField" name="icmsinterestadual" template="bootstrap3-horizontal"}}
+
+</template>
