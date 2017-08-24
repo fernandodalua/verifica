@@ -1,0 +1,55 @@
+<template name="topNavbar">
+<div class="col-lg-12 alert-danger" style="height:250px;">
+
+</div>
+
+</template>
+
+<template name="test">
+
+
+  <div class="row alert-danger">
+
+    <div class="col-md-12 img-responsive" id="userCover" style="background-image:url({{getProfileCover.url}});">
+
+      <div class="col-md-2 text-center">
+        <a class="btn" id="changeProfilePhoto">
+
+          {{#if useFacebook}}
+          <img class="img-thumbnail" src={{getFbPicture}} style="max-height:280px;" alt="">
+          {{/if}}
+          {{#if this.profile.picture}}
+          <img class="img-thumbnail" src={{getProfilePicture.url store='avatar'}} alt="">
+          <!-- <div class="img-thumbnail" style="background-image:url({{getThumb.url}});"></div> -->
+          {{/if}}
+
+          {{#if useDefaultPhoto}}
+          <img class="img-thumbnail" src="/defaulPicture.jpg" alt="">
+          {{/if}}
+
+        </a>
+        <input type="file" multiple="false" id="addProfilePhoto" class="addProfilePhoto" style="display:none">
+
+
+      </div>
+
+      <div class="col-md-10" >
+        {{#if canUpdate}}
+        <button type="button" id="changeProfileCover" class="profileCoverButton pull-right" style="background: transparent;">
+          <div class="well well-sm">
+            <i class="fa fa-photo" style="color:black;"> Atualizar Capa</i>
+          </div>
+
+        </button>
+
+
+        <input type="file" multiple="false" id="addProfileCover" class="addProfileCover" style="display:none">
+
+        {{/if}}
+      </div>
+    </div>
+
+  </div>
+
+
+</template>

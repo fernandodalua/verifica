@@ -1,0 +1,377 @@
+<template name="pedidosTemplate">
+
+  <h2>Meus pedidos</h2>
+
+  {{> showOrders}}
+
+
+</template>
+
+<template name="orderNavbar">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <div class="text-left form-group">
+            <button id="showAllOrdersBtn" type="button" class="btn btn-default">
+              Todos os Pedidos
+            </button>
+            <button id="showOpenOrdersBtn" type="button" class="btn btn-default">
+              Pedidos Abertos
+            </button>
+            <button id="showFinalizedBtn" type="button" class="btn btn-default">
+              Pedidos Finalizados
+            </button>
+
+
+          <!-- {{> addTipModal}} -->
+        </div>
+
+      </div>
+
+      <div class="panel-body">
+
+        {{> Template.dynamic template=tab data=tabData}}
+
+
+        <!-- {{> googleLikeHelp}} -->
+      </div>
+    </div>
+
+    </div>
+  </div>
+</template>
+
+
+
+
+<template name="userPosts">
+  <h2>Post Lists</h2>
+  <select>
+    {{#each postLists}}
+      <option value="{{_id}}">{{name}}</option>
+    {{/each}}
+  </select>
+
+  <h2>Filtered Posts</h2>
+  <ul>
+  {{#each filteredPosts}}
+    <li>{{name}}</li>
+  {{/each}}
+  </ul>
+</template>
+
+
+<template name="viewUserModal">
+	<div class="modal fade">
+		<div class="modal-dialog">
+			<div class="modal-content">
+
+				<div class="modal-header">
+					<h4 class="modal-title">{{this.client.nome}}</h4>
+				</div>
+
+				<div class="modal-body">
+					<p>A modal example.</p>
+				</div>
+
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
+
+			</div>
+		</div>
+	</div>
+</template>
+
+
+<template name="orderOpen">
+
+  <!-- {{> userPosts}} -->
+  {{#with getClient}}
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title" id="">{{this.nome}}</h4>
+        </div>
+        <div class="modal-body">
+          <p>
+            CNPJ: {{this.cnpj}}
+          </p>
+          <p>
+            Inscrição Estadual: {{this.inscricaoestadual}}
+          </p>
+          <p>
+            Telefone: {{this.telefone}}
+          </p>
+          <p>
+            Endereço: {{this.endereco}}, {{this.numero}}
+          </p>
+          <p>
+            CEP: {{this.cep}}
+          </p>
+          <p>
+            Município: {{this.municipio}}, Bairro: {{this.bairro}}, UF: {{this.uf}}
+          </p>
+
+
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  {{/with}}
+
+
+  <div class="panel-group" id="accordion">
+      <div class="panel panel-primary" id="panel1">
+          <div class="panel-heading">
+               <h4 class="panel-title">
+          <a data-toggle="collapse" data-target="#{{this._id}}" href="#{{this._id}}">
+            <div class="col-lg-1">
+              <button type="button" id="checkOrderBtn" style="float:left; background:transparent;" class="btn">
+                <span class="fa fa-check-circle fa-2x"> </span>
+
+              </button>
+            </div>
+
+              <div class="col-lg-7 h4">
+
+
+                  <a style="color:white;" href="#myModal" data-toggle="modal" data-target="#myModal">
+                    {{getClient.nome}}
+                  </a>
+              </div>
+
+              <div class="col-lg-3 h4">
+                R${{getTotal}}
+
+              </div>
+
+              <div class="col-lg-1">
+                <button type="button" id="removeOrder" style="float:right;background:transparent;" class="btn">
+                  <span class="fa fa-times fa-2x"></span>
+
+                </button>
+
+              </div>
+          </a>
+        </h4>
+
+          </div>
+          <div id="{{this._id}}" class="panel-collapse collapse">
+            <div class="col-lg-9">
+              {{#each getProducts}}
+              <p>{{this.nome}}  x{{this.quantidade}} = {{this.subtotal}}</p>
+              {{/each}}
+
+            </div>
+            <div class="col-lg-3">
+              <h1>
+
+              </h1>
+            </div>
+
+          </div>
+      </div>
+
+  </div>
+
+
+
+</template>
+
+<template name="orderFinalized">
+
+
+    <!-- {{> userPosts}} -->
+    {{#with getClient}}
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title" id="">{{this.nome}}</h4>
+          </div>
+          <div class="modal-body">
+            <p>
+              CNPJ: {{this.cnpj}}
+            </p>
+            <p>
+              Inscrição Estadual: {{this.inscricaoestadual}}
+            </p>
+            <p>
+              Telefone: {{this.telefone}}
+            </p>
+            <p>
+              Endereço: {{this.endereco}}, {{this.numero}}
+            </p>
+            <p>
+              CEP: {{this.cep}}
+            </p>
+            <p>
+              Município: {{this.municipio}}, Bairro: {{this.bairro}}, UF: {{this.uf}}
+            </p>
+
+
+
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+
+          </div>
+        </div>
+      </div>
+    </div>
+    {{/with}}
+
+
+    <div class="panel-group" id="accordion">
+        <div class="panel panel-success" id="panel2">
+            <div class="panel-heading">
+                 <h4 class="panel-title">
+                  <a data-toggle="collapse" data-target="#{{this._id}}" href="#{{this._id}}">
+                    <!-- <div class="col-lg-1">
+                      <button type="button" id="checkOrderBtn" style="float:left; background:transparent;" class="btn">
+                        <span class="fa fa-check-circle fa-2x"> </span>
+
+                      </button>
+                    </div> -->
+
+                      <div class="col-lg-8 h4">
+
+                          <a style="color:black;" href="#myModal" data-toggle="modal" data-target="#myModal">
+                            {{getClient.nome}}
+                          </a>
+                      </div>
+
+                      <div class="col-lg-3 h4">
+                        R${{getTotal}}
+
+                      </div>
+
+                      <div class="col-lg-1">
+                        <button type="button" id="removeOrder" style="float:right;background:transparent;" class="btn">
+                          <span class="fa fa-times fa-2x"></span>
+
+                        </button>
+
+                      </div>
+                  </a>
+                </h4>
+
+            </div>
+
+            <div id="{{this._id}}" class="panel-collapse collapse">
+              <div class="col-lg-9">
+                {{#each getProducts}}
+                <p>{{this.nome}}  x{{this.quantidade}} = {{this.subtotal}}</p>
+                {{/each}}
+
+              </div>
+              <div class="col-lg-3">
+                <h1>
+
+                </h1>
+              </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</template>
+
+
+<template name="showOpenOrders">
+
+  {{#each getOrders}}
+
+  {{> orderOpen}}
+  <!-- {{#if this.status}}
+
+  {{else}}
+    {{> orderFinalized}}
+  {{/if}} -->
+
+
+  {{/each}}
+
+</template>
+
+<template name="orderFilter">
+  <!-- <h3>Mostrar</h3> -->
+    <h4><label class="checkbox-inline">
+      <input id="open" type="checkbox" value="" checked >Abertos
+    </label>
+    <label class="checkbox-inline">
+      <input id="finalized" type="checkbox" value="">Finalizados
+    </label>
+  </h4>
+
+</template>
+
+<template name="showOrders">
+
+  {{> orderFilter}}
+
+  <!-- {{#if showOpen}}
+    {{#each getOrders}}
+      {{> orderOpen}}
+
+    {{/each}}
+  {{/if}}
+
+  {{#if showFinalized}}
+    {{#each getOrders}}
+      {{> orderFinalized}}
+
+    {{/each}}
+  {{/if}} -->
+
+
+    {{#if showOpen}}
+    <div class="well well-lg">
+
+
+      {{#each getOpenOrders}}
+      {{> orderOpen}}
+      {{else}}
+        <h2>
+            Nenhum Pedido Aberto!
+
+        </h2>
+      {{/each}}
+    </div>
+      <!-- {{> show}} -->
+
+    {{/if}}
+
+    {{#if showFinalized}}
+    <div class="well well-lg">
+
+      {{#each getFinalizedOrders}}
+        {{> orderFinalized}}
+      {{else}}
+          <h2>
+            <div class="panel-warning">
+
+              Não há registro de pedidos finalizados!
+            </div>
+          </h2>
+      {{/each}}
+    </div>
+    {{/if}}
+
+
+
+
+
+</template>

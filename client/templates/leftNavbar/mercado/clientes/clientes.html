@@ -1,0 +1,169 @@
+
+
+<template name="clientesTemplate">
+  <h2>Clientes</h2>
+
+
+  <div class="row">
+
+    <div class="col-lg-12 form-group">
+
+      {{> addClientModal}}
+    </div>
+
+
+  </div>
+
+
+    <div class="col-lg-12 form-group">
+      {{> showClients}}
+
+    </div>
+
+
+
+
+</template>
+
+<template name="addClientModal">
+  <!-- {{> quickForm collection="Clientes" id="addClientForm" type="insert" omitFields="telefone" buttonContent="Save Changes" }}
+
+  {{#autoForm id="clientForm" resetOnSuccess=false collection="Clientes" type="insert" formgroup-class="col-md-4"}}
+  {{> afQuickField id="tel" name="telefone" label="Telefones *" formgroup-class="col-md-4"}}
+
+  {{/autoForm}} -->
+
+  <button type="button" class="btn btn-success" style="float:right;" data-toggle="modal" data-target="#myModal">
+    <i class="fa fa-plus fa-1x"></i>Adicionar Cliente
+  </button>
+
+  {{#autoForm id="addClientForm" resetOnSuccess=true collection="Clientes"  type="insert"}}
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabel">Adicionar novo cliente</h4>
+        </div>
+        <div class="modal-body">
+
+          <div class="row">
+
+            <div class="col-lg-12">
+
+              {{> afQuickField id="nome" name="nome" label="Nome/Razão Social *" formgroup-class="col-lg-12"}}
+              {{> afQuickField id="cnpj" name="cnpj" label="CNPJ *" formgroup-class="col-lg-7"}}
+              {{> afQuickField id="inscricaoestadual" name="inscricaoestadual" label="Incrição Estadual *" formgroup-class="col-lg-5"}}
+              {{> afQuickField id="telefone" name="telefone" label="Telefone *" formgroup-class="col-lg-6"}}
+              {{> afQuickField id="cep" name="cep" label="CEP *" formgroup-class="col-lg-6"}}
+              {{> afQuickField id="endereco" name="endereco" label="Endereço *" formgroup-class="col-lg-12"}}
+              {{> afQuickField id="municipio" name="municipio" label="Município *" formgroup-class="col-lg-5"}}
+              {{> afQuickField id="bairro" name="bairro" label="Bairro *" formgroup-class="col-lg-5"}}
+              {{> afQuickField id="uf" name="uf" label="UF *" formgroup-class="col-lg-2"}}
+
+            </div>
+
+          </div>
+
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button type="button" id="saveBtn" class="btn btn-success">Salvar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {{/autoForm}}
+
+
+</template>
+
+<template name="editClientTemplate">
+
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">{{user.profile.nome}}</h3>
+    </div>
+    <div class="panel-body">
+
+
+      {{#autoForm id="editClientForm" resetOnSuccess=false collection="Clientes" type="update" doc=this.client}}
+
+      {{> afQuickField id="nome" name="nome" label="Nome/Razão Social *" formgroup-class="col-lg-12"}}
+      {{> afQuickField id="cnpj" name="cnpj" label="CNPJ *" formgroup-class="col-lg-7"}}
+      {{> afQuickField id="inscricaoestadual" name="inscricaoestadual" label="Incrição Estadual *" formgroup-class="col-lg-5"}}
+      {{> afQuickField id="telefone" name="telefone" label="Telefone *" formgroup-class="col-lg-6"}}
+      {{> afQuickField id="cep" name="cep" label="CEP *" formgroup-class="col-lg-6"}}
+      {{> afQuickField id="endereco" name="endereco" label="Endereço *" formgroup-class="col-lg-12"}}
+      {{> afQuickField id="municipio" name="municipio" label="Município *" formgroup-class="col-lg-5"}}
+      {{> afQuickField id="bairro" name="bairro" label="Bairro *" formgroup-class="col-lg-5"}}
+      {{> afQuickField id="uf" name="uf" label="US *" formgroup-class="col-lg-2"}}
+
+      <button type="submit" id="saveBtn" class="btn btn-primary">Save changes</button>
+
+      {{/autoForm}}
+
+
+    </div>
+    <div class="panel-footer">
+
+    </div>
+  </div>
+
+</template>
+
+<template name="clientTable">
+
+  <div class="panel panel-default ">
+    <div class="panel-heading">
+      <h3 class="panel-title"></h3>
+    </div>
+    <div class="panel-body">
+
+      {{> reactiveTable settings=settings}}
+
+    </div>
+    <div class="panel-footer">
+
+    </div>
+  </div>
+
+
+</template>
+
+
+
+<template name="showClients">
+
+
+  {{> reactiveTable collection=getClientes settings=settings}}
+
+  {{#each getClientes}}
+
+
+
+
+  <!--
+  </fieldset>
+  <div class="col-lg-12">
+    <h2>
+      Nome: {{this.nome}}
+    </h2>
+
+
+  </div> -->
+
+
+  {{/each}}
+
+
+  <!-- {{> clientTable}} -->
+
+
+
+
+
+</template>

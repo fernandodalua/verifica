@@ -1,0 +1,47 @@
+<template name="rightNavbar">
+  <hr>
+
+  <div class="container-fluid alert-info text-center">
+    <h3>Colaborando com a Serendipi</h3>
+    <div class="row">
+      <div class="col-lg-6">
+        <button type="button" id="refreshTips" class="btn" style="BACKGROUND:Transparent;">
+          <i class="fa fa-refresh alert-info">Atualizar</i>
+        </button>
+        <!-- <label for="">Atualizar</label> -->
+      </div>
+      <div class="col-lg-6">
+        <button type="button" id="allTips" class="btn" style="BACKGROUND:Transparent;" >
+          <i class="fa fa-globe alert-info"> Ver Todos</i>
+        </button>
+      </div>
+    </div>
+<hr>
+
+    <!-- <label>atualizar</label> <label>ver todos</label> -->
+
+    {{#each serendipiTips}}
+
+    <div class="col-lg-12">
+
+      <a href="/tip/{{this._id}}" type="button">
+
+        <div class="pull-left">
+          <div class="img-circle" style="background-image:url({{getIcon}});"></div>
+        </div>
+        {{this.category}}
+        <p>
+          {{this.title}}
+        </p>
+        <!-- {{this._id}} -->
+      </a>
+    </div>
+
+    <hr>
+
+    {{/each}}
+
+  </div>
+
+
+</template>

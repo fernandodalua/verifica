@@ -1,0 +1,48 @@
+<template name="navbarHeader">
+  <!-- <div class="navbar navbar-default" role="navigation"> -->
+
+
+    <div class="navbar-collapse collapse"  id="navigationbar">
+      <ul class="nav navbar-nav ">
+        <li class="{{ activeIfTemplateIs 'Landing' }}">
+          <a href="/landing">
+            <img alt="Logo" src="/logo_serendipiti_navbar.png" height="30" width="30"/>
+          </a>
+        </li>
+
+          {{#if currentUser}}
+          <li class="{{ activeIfTemplateIs 'Home' }}">
+            <a href="/home">
+              Home
+            </a>
+          </li>
+
+            {{/if}}
+          </ul>
+
+          <ul class="nav navbar-nav navbar-right ">
+            {{> loginButtons}} <!-- here -->
+
+          </ul>
+
+          <div id="searchBar" class="col-lg-4 " style="margin-top:12px;">
+
+            {{> search}}
+          </div>
+
+        </div>
+
+
+
+
+
+  <!-- </div> -->
+
+
+</template>
+
+
+<template name="_loginButtonsAdditionalLoggedInDropdownActions">
+    <!-- <button class="btn btn-default btn-block" id="login-buttons-edit-profile">Edit Profile</button> -->
+    <button class="btn btn-default btn-block" id="login-buttons-my-startups">My Startups</button>
+</template>

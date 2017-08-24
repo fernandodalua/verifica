@@ -1,0 +1,8 @@
+
+<template name="editUserTemplate">
+  {{#autoForm id="UserProfileEdit" collection="Meteor.users" template="bootstrap3-inline"  doc=this type="update"}}
+  {{> afQuickField name="profile.firstName" formgroup-class="col-md-6"}}
+  {{> afQuickField name="profile.lastName" formgroup-class="col-md-6"}}
+
+  {{/autoForm}}
+</template>
