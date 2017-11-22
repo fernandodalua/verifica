@@ -1,5 +1,5 @@
 
-Meteor.publish('userData', function () {
+Meteor.publish('user', function () {
   return Meteor.users.find({});
 
   // Meteor.users.find({}, {fields: {portfolio:1 ,following:1, profile: 1, roles: 1, followers:1}});

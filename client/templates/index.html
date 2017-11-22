@@ -1,0 +1,39 @@
+<template name="layout">
+  <head>
+    <title>Verifica Sefaz</title>
+  </head>
+  <body>
+
+    {{#if currentUser}}
+
+    <div class="col-lg-12">
+      {{> news}}
+      <!-- {{> orderTemplate}} -->
+
+    </div>
+
+    {{else}}
+
+    <div class="col-lg-6">
+      {{> login}}
+    </div>
+
+    <div class="col-lg-6">
+      {{> register}}
+
+    </div>
+
+    {{/if}}
+
+
+
+  </body>
+</template>
+
+<template name="news">
+
+  {{> postTemplate}}
+
+  <!-- {{> post}} -->
+  {{> timeline}}
+</template>

@@ -1,4 +1,4 @@
-<template name="ApplicationLayout">
+<template name="ApplicationLayout2">
   <!-- <header>
 
   </header> -->
@@ -36,6 +36,7 @@
   <!-- </div> -->
 
 </body>
+</template>
 
     <!-- {{#with isLogged}} -->
 
@@ -60,5 +61,33 @@
   <!-- {{/with}}  -->
 
 
+
+<template name="ApplicationLayout">
+  <header>
+  {{> navbarHeader}}
+  </header>
+  <body>
+
+    {{#with getCurrentUser}}
+    <div class="col-lg-3 pull-left">
+      {{> leftNavbar}}
+    </div>
+    <div class="col-lg-9">
+      {{> yield}}
+    </div>
+    {{else}}
+    <div class="col-lg-12 text-center">
+      <div class="col-lg-6 text-right">
+        {{> register}}
+      </div>
+
+      <div class="col-lg-6 text-left">
+        {{> login}}
+      </div>
+    </div>
+    {{/with}}
+
+
+</body>
 
 </template>

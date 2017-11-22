@@ -1,5 +1,5 @@
 {
-  "name": "meteor-bird",
+  "name": "Repp",
   "private": true,
   "scripts": {
     "start": "meteor run"

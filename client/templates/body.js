@@ -7,42 +7,51 @@ showLeftNavbar: function(){
 
   return true;
 },
-  isLogged: function(){
-    var path = Iron.Location.get().path;
-    var split = path.split("/");
-    // console.log("\n\npath -- ",path);
-    if (split) {
-      // console.log(split);
-      for (var j = 0; j < split.length; j++) {
-        if(split[j] == "Landing"){
-          console.log("landing");
-          return false;
+isLogged: function(){
+  var path = Iron.Location.get().path;
+  var split = path.split("/");
+  // console.log("\n\npath -- ",path);
+  if (split) {
+    // console.log(split);
+    for (var j = 0; j < split.length; j++) {
+      if(split[j] == "Landing"){
+        console.log("landing");
+        return false;
 
-        }
-      }
-
-      if (Meteor.user()) {
-
-        if (split.length == 3) {
-
-          for (var i = 0; i < split.length; i++) {
-            if(split[i] == "tip"){
-              return Meteor.user();
-
-            }
-
-          }
-          return Meteor.users.findOne({_id:split[split.length-1]});
-
-        }
-
-        return Meteor.user();
       }
     }
 
+    if (Meteor.user()) {
+
+      if (split.length == 3) {
+
+        for (var i = 0; i < split.length; i++) {
+          if(split[i] == "tip"){
+            return Meteor.user();
+
+          }
+
+        }
+        return Meteor.users.findOne({_id:split[split.length-1]});
+
+      }
+
+      return Meteor.user();
+    }
+  }
 
 
 
-    return false;
-  },
+
+  return false;
+},
+getCurrentUser:function(){
+    console.log("\n\n--getCurrentUser--\n this: ",this);
+    var user = Meteor.user();
+    // var name = user.profile.name;
+    return user;
+
+  }
+
+
 });
